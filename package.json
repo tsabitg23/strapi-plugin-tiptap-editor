@@ -37,7 +37,8 @@
     "test:ts:front": "run -T tsc -p admin/tsconfig.json",
     "test:ts:back": "run -T tsc -p server/tsconfig.json",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "@strapi/design-system": "2.2.0",
@@ -105,5 +106,6 @@
   "bugs": {
     "url": "https://github.com/notum-cz/strapi-plugin-tiptap-editor/issues"
   },
-  "homepage": "https://github.com/notum-cz/strapi-plugin-tiptap-editor#readme"
+  "homepage": "https://github.com/notum-cz/strapi-plugin-tiptap-editor#readme",
+  "packageManager": "yarn@1.22.22"
 }
