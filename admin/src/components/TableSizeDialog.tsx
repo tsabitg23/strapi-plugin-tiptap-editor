@@ -36,7 +36,7 @@ export const TableSizeDialog: FC<TableSizeDialogProps> = ({
   }, [open, defaultRows, defaultCols]);
 
   const min = 1;
-  const max = 10;
+  const max = 30;
 
   const isValid = rows >= min && rows <= max && cols >= min && cols <= max;
 
