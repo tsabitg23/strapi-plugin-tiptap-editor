@@ -22,6 +22,8 @@ export function useTable(
           canDeleteColumn: false,
           canAddRow: false,
           canDeleteRow: false,
+          canMergeCells: false,
+          canSplitCell: false,
         };
       }
       const ed = ctx.editor;
@@ -36,6 +38,8 @@ export function useTable(
         canDeleteColumn: canPerformTableAction('deleteColumn'),
         canAddRow: canPerformTableAction('addRowAfter'),
         canDeleteRow: canPerformTableAction('deleteRow'),
+        canMergeCells: canPerformTableAction('mergeCells'),
+        canSplitCell: canPerformTableAction('splitCell'),
       };
     },
   });
@@ -57,6 +61,8 @@ export function useTable(
   const removeColumn = () => editor?.chain().focus().deleteColumn().run();
   const addRow = () => editor?.chain().focus().addRowAfter().run();
   const removeRow = () => editor?.chain().focus().deleteRow().run();
+  const mergeCells = () => editor?.chain().focus().mergeCells().run();
+  const splitCell = () => editor?.chain().focus().splitCell().run();
 
   return {
     tableButton: (
@@ -113,6 +119,28 @@ export function useTable(
         tooltip={formatMessage({
           id: 'tiptap-editor.toolbar.removeRow',
           defaultMessage: 'Remove row',
+        })}
+      />
+    ),
+    mergeCellsButton: (
+      <ToolbarButton
+        onClick={mergeCells}
+        icon={<>Merge cells</>}
+        hidden={props.disabled || !editor || !editorState?.canMergeCells}
+        tooltip={formatMessage({
+          id: 'tiptap-editor.toolbar.mergeCells',
+          defaultMessage: 'Merge selected table cells',
+        })}
+      />
+    ),
+    splitCellButton: (
+      <ToolbarButton
+        onClick={splitCell}
+        icon={<>Split cell</>}
+        hidden={props.disabled || !editor || !editorState?.canSplitCell}
+        tooltip={formatMessage({
+          id: 'tiptap-editor.toolbar.splitCell',
+          defaultMessage: 'Split merged table cell',
         })}
       />
     ),

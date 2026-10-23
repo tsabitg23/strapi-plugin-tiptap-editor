@@ -8,6 +8,9 @@ export declare function useStarterKit(editor: Editor | null, props?: {
     strikeButton: import("react/jsx-runtime").JSX.Element;
     bulletButton: import("react/jsx-runtime").JSX.Element;
     orderedButton: import("react/jsx-runtime").JSX.Element;
+    alphabeticButton: import("react/jsx-runtime").JSX.Element;
+    indentListButton: import("react/jsx-runtime").JSX.Element;
+    outdentListButton: import("react/jsx-runtime").JSX.Element;
     codeButton: import("react/jsx-runtime").JSX.Element;
     blockquoteButton: import("react/jsx-runtime").JSX.Element;
 };

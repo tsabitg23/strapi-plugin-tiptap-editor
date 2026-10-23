@@ -37,7 +37,10 @@ export function useStarterKit(
           isBulletList: false,
           canToggleBulletList: false,
           isOrderedList: false,
+          isAlphabeticList: false,
           canToggleOrderedList: false,
+          canIndentListItem: false,
+          canOutdentListItem: false,
           isBlockquote: false,
           canToggleBlockquote: false,
         };
@@ -61,7 +64,10 @@ export function useStarterKit(
         isBulletList: ctx.editor.isActive('bulletList') ?? false,
         canToggleBulletList: canPerformAction('toggleBulletList'),
         isOrderedList: ctx.editor.isActive('orderedList') ?? false,
+        isAlphabeticList: ctx.editor.isActive('orderedList', { type: 'a' }) ?? false,
         canToggleOrderedList: canPerformAction('toggleOrderedList'),
+        canIndentListItem: ed.can().sinkListItem('listItem'),
+        canOutdentListItem: ed.can().liftListItem('listItem'),
         isBlockquote: ctx.editor.isActive('blockquote') ?? false,
         canToggleBlockquote: canPerformAction('toggleBlockquote'),
       };
@@ -74,7 +80,27 @@ export function useStarterKit(
   const toggleStrike = () => editor?.chain().focus().toggleStrike().run();
   const toggleCode = () => editor?.chain().focus().toggleCode().run();
   const toggleBulletList = () => editor?.chain().focus().toggleBulletList().run();
-  const toggleOrderedList = () => editor?.chain().focus().toggleOrderedList().run();
+  const toggleOrderedList = () => {
+    if (!editor) return;
+    if (editor.isActive('orderedList', { type: 'a' })) {
+      editor.chain().focus().updateAttributes('orderedList', { type: null }).run();
+    } else {
+      editor.chain().focus().toggleOrderedList().run();
+    }
+  };
+  const toggleAlphabeticList = () => {
+    if (!editor) return;
+    if (editor.isActive('orderedList', { type: 'a' })) {
+      editor.chain().focus().toggleOrderedList().run();
+    } else if (editor.isActive('orderedList')) {
+      editor.chain().focus().updateAttributes('orderedList', { type: 'a' }).run();
+    } else {
+      editor.chain().focus().toggleOrderedList().updateAttributes('orderedList', { type: 'a' }).run();
+    }
+  };
+  const indentListItem = () =>
+    editor?.chain().focus().sinkListItem('listItem').updateAttributes('orderedList', { type: '1' }).run();
+  const outdentListItem = () => editor?.chain().focus().liftListItem('listItem').run();
   const toggleBlockquote = () => editor?.chain().focus().toggleBlockquote().run();
 
   return {
@@ -136,11 +162,45 @@ export function useStarterKit(
       <ToolbarButton
         onClick={toggleOrderedList}
         icon={<NumberListIcon />}
-        active={editorState?.isOrderedList ?? false}
+        active={(editorState?.isOrderedList && !editorState?.isAlphabeticList) ?? false}
         disabled={props.disabled || !editor || !editorState?.canToggleOrderedList}
         tooltip={formatMessage({
           id: 'tiptap-editor.toolbar.numberedList',
           defaultMessage: 'Numbered list',
+        })}
+      />
+    ),
+    alphabeticButton: (
+      <ToolbarButton
+        onClick={toggleAlphabeticList}
+        icon={<>a. b. c.</>}
+        active={editorState?.isAlphabeticList ?? false}
+        disabled={props.disabled || !editor || !editorState?.canToggleOrderedList}
+        tooltip={formatMessage({
+          id: 'tiptap-editor.toolbar.alphabeticList',
+          defaultMessage: 'Alphabetic list (a, b, c)',
+        })}
+      />
+    ),
+    indentListButton: (
+      <ToolbarButton
+        onClick={indentListItem}
+        icon={<>→</>}
+        disabled={props.disabled || !editor || !editorState?.canIndentListItem}
+        tooltip={formatMessage({
+          id: 'tiptap-editor.toolbar.indentListItem',
+          defaultMessage: 'Create numbered sublist (Tab)',
+        })}
+      />
+    ),
+    outdentListButton: (
+      <ToolbarButton
+        onClick={outdentListItem}
+        icon={<>←</>}
+        disabled={props.disabled || !editor || !editorState?.canOutdentListItem}
+        tooltip={formatMessage({
+          id: 'tiptap-editor.toolbar.outdentListItem',
+          defaultMessage: 'Outdent list item (Shift+Tab)',
         })}
       />
     ),

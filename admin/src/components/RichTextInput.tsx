@@ -101,6 +101,9 @@ const InnerEditor = forwardRef<HTMLDivElement, InnerEditorProps>(
           </FeatureGuard>
           <FeatureGuard featureValue={config?.orderedList}>
             {starterKit.orderedButton}
+            {starterKit.alphabeticButton}
+            {starterKit.indentListButton}
+            {starterKit.outdentListButton}
           </FeatureGuard>
           <Spacer width={8} />
           <FeatureGuard featureValue={config?.code}>
@@ -124,6 +127,8 @@ const InnerEditor = forwardRef<HTMLDivElement, InnerEditorProps>(
             {table.removeColumnButton}
             {table.addRowButton}
             {table.removeRowButton}
+            {table.mergeCellsButton}
+            {table.splitCellButton}
             {table.tableDialog}
           </FeatureGuard>
         </BaseTiptapInput>

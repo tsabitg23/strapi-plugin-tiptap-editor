@@ -11,7 +11,7 @@ const ReactDOM = require("react-dom");
 const styled = require("styled-components");
 const admin = require("@strapi/strapi/admin");
 const icons = require("@strapi/icons");
-const index = require("./index-E_cL9Trk.js");
+const index = require("./index-Dd7tVxck.js");
 const _interopDefault = (e) => e && e.__esModule ? e : { default: e };
 const React__default = /* @__PURE__ */ _interopDefault(React);
 const ReactDOM__default = /* @__PURE__ */ _interopDefault(ReactDOM);
@@ -19861,6 +19861,10 @@ const TiptapInputStyles = styled__default.default.div`
     list-style: decimal;
   }
 
+  .ProseMirror ol[type='a'] {
+    list-style-type: lower-alpha;
+  }
+
   .ProseMirror li {
     margin: 0.25em 0;
   }
@@ -20255,7 +20259,10 @@ function useStarterKit(editor, props = { disabled: false }) {
           isBulletList: false,
           canToggleBulletList: false,
           isOrderedList: false,
+          isAlphabeticList: false,
           canToggleOrderedList: false,
+          canIndentListItem: false,
+          canOutdentListItem: false,
           isBlockquote: false,
           canToggleBlockquote: false
         };
@@ -20279,7 +20286,10 @@ function useStarterKit(editor, props = { disabled: false }) {
         isBulletList: ctx.editor.isActive("bulletList") ?? false,
         canToggleBulletList: canPerformAction("toggleBulletList"),
         isOrderedList: ctx.editor.isActive("orderedList") ?? false,
+        isAlphabeticList: ctx.editor.isActive("orderedList", { type: "a" }) ?? false,
         canToggleOrderedList: canPerformAction("toggleOrderedList"),
+        canIndentListItem: ed.can().sinkListItem("listItem"),
+        canOutdentListItem: ed.can().liftListItem("listItem"),
         isBlockquote: ctx.editor.isActive("blockquote") ?? false,
         canToggleBlockquote: canPerformAction("toggleBlockquote")
       };
@@ -20291,7 +20301,26 @@ function useStarterKit(editor, props = { disabled: false }) {
   const toggleStrike = () => editor?.chain().focus().toggleStrike().run();
   const toggleCode = () => editor?.chain().focus().toggleCode().run();
   const toggleBulletList = () => editor?.chain().focus().toggleBulletList().run();
-  const toggleOrderedList = () => editor?.chain().focus().toggleOrderedList().run();
+  const toggleOrderedList = () => {
+    if (!editor) return;
+    if (editor.isActive("orderedList", { type: "a" })) {
+      editor.chain().focus().updateAttributes("orderedList", { type: null }).run();
+    } else {
+      editor.chain().focus().toggleOrderedList().run();
+    }
+  };
+  const toggleAlphabeticList = () => {
+    if (!editor) return;
+    if (editor.isActive("orderedList", { type: "a" })) {
+      editor.chain().focus().toggleOrderedList().run();
+    } else if (editor.isActive("orderedList")) {
+      editor.chain().focus().updateAttributes("orderedList", { type: "a" }).run();
+    } else {
+      editor.chain().focus().toggleOrderedList().updateAttributes("orderedList", { type: "a" }).run();
+    }
+  };
+  const indentListItem = () => editor?.chain().focus().sinkListItem("listItem").updateAttributes("orderedList", { type: "1" }).run();
+  const outdentListItem = () => editor?.chain().focus().liftListItem("listItem").run();
   const toggleBlockquote = () => editor?.chain().focus().toggleBlockquote().run();
   return {
     boldButton: /* @__PURE__ */ jsxRuntime.jsx(
@@ -20358,11 +20387,48 @@ function useStarterKit(editor, props = { disabled: false }) {
       {
         onClick: toggleOrderedList,
         icon: /* @__PURE__ */ jsxRuntime.jsx(icons.NumberList, {}),
-        active: editorState?.isOrderedList ?? false,
+        active: (editorState?.isOrderedList && !editorState?.isAlphabeticList) ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleOrderedList,
         tooltip: formatMessage({
           id: "tiptap-editor.toolbar.numberedList",
           defaultMessage: "Numbered list"
+        })
+      }
+    ),
+    alphabeticButton: /* @__PURE__ */ jsxRuntime.jsx(
+      ToolbarButton,
+      {
+        onClick: toggleAlphabeticList,
+        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "a. b. c." }),
+        active: editorState?.isAlphabeticList ?? false,
+        disabled: props.disabled || !editor || !editorState?.canToggleOrderedList,
+        tooltip: formatMessage({
+          id: "tiptap-editor.toolbar.alphabeticList",
+          defaultMessage: "Alphabetic list (a, b, c)"
+        })
+      }
+    ),
+    indentListButton: /* @__PURE__ */ jsxRuntime.jsx(
+      ToolbarButton,
+      {
+        onClick: indentListItem,
+        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "→" }),
+        disabled: props.disabled || !editor || !editorState?.canIndentListItem,
+        tooltip: formatMessage({
+          id: "tiptap-editor.toolbar.indentListItem",
+          defaultMessage: "Create numbered sublist (Tab)"
+        })
+      }
+    ),
+    outdentListButton: /* @__PURE__ */ jsxRuntime.jsx(
+      ToolbarButton,
+      {
+        onClick: outdentListItem,
+        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "←" }),
+        disabled: props.disabled || !editor || !editorState?.canOutdentListItem,
+        tooltip: formatMessage({
+          id: "tiptap-editor.toolbar.outdentListItem",
+          defaultMessage: "Outdent list item (Shift+Tab)"
         })
       }
     ),
@@ -21479,7 +21545,9 @@ function useTable(editor, props = { disabled: false }) {
           canAddColumn: false,
           canDeleteColumn: false,
           canAddRow: false,
-          canDeleteRow: false
+          canDeleteRow: false,
+          canMergeCells: false,
+          canSplitCell: false
         };
       }
       const ed = ctx.editor;
@@ -21493,7 +21561,9 @@ function useTable(editor, props = { disabled: false }) {
         canAddColumn: canPerformTableAction("addColumnAfter"),
         canDeleteColumn: canPerformTableAction("deleteColumn"),
         canAddRow: canPerformTableAction("addRowAfter"),
-        canDeleteRow: canPerformTableAction("deleteRow")
+        canDeleteRow: canPerformTableAction("deleteRow"),
+        canMergeCells: canPerformTableAction("mergeCells"),
+        canSplitCell: canPerformTableAction("splitCell")
       };
     }
   });
@@ -21511,6 +21581,8 @@ function useTable(editor, props = { disabled: false }) {
   const removeColumn2 = () => editor?.chain().focus().deleteColumn().run();
   const addRow2 = () => editor?.chain().focus().addRowAfter().run();
   const removeRow2 = () => editor?.chain().focus().deleteRow().run();
+  const mergeCells2 = () => editor?.chain().focus().mergeCells().run();
+  const splitCell2 = () => editor?.chain().focus().splitCell().run();
   return {
     tableButton: /* @__PURE__ */ jsxRuntime.jsx(
       ToolbarButton,
@@ -21571,6 +21643,30 @@ function useTable(editor, props = { disabled: false }) {
         tooltip: formatMessage({
           id: "tiptap-editor.toolbar.removeRow",
           defaultMessage: "Remove row"
+        })
+      }
+    ),
+    mergeCellsButton: /* @__PURE__ */ jsxRuntime.jsx(
+      ToolbarButton,
+      {
+        onClick: mergeCells2,
+        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "Merge cells" }),
+        hidden: props.disabled || !editor || !editorState?.canMergeCells,
+        tooltip: formatMessage({
+          id: "tiptap-editor.toolbar.mergeCells",
+          defaultMessage: "Merge selected table cells"
+        })
+      }
+    ),
+    splitCellButton: /* @__PURE__ */ jsxRuntime.jsx(
+      ToolbarButton,
+      {
+        onClick: splitCell2,
+        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "Split cell" }),
+        hidden: props.disabled || !editor || !editorState?.canSplitCell,
+        tooltip: formatMessage({
+          id: "tiptap-editor.toolbar.splitCell",
+          defaultMessage: "Split merged table cell"
         })
       }
     ),
@@ -29661,6 +29757,22 @@ const PasteStripper = Extension.create({
     return html.replace(/ style="[^"]*"/g, "");
   }
 });
+const OrderedSublistShortcuts = Extension.create({
+  name: "orderedSublistShortcuts",
+  priority: 1e3,
+  addKeyboardShortcuts() {
+    return {
+      Tab: () => {
+        if (!this.editor.isActive("orderedList")) return false;
+        return this.editor.chain().sinkListItem("listItem").updateAttributes("orderedList", { type: "1" }).run();
+      },
+      "Shift-Tab": () => {
+        if (!this.editor.isActive("orderedList")) return false;
+        return this.editor.commands.liftListItem("listItem");
+      }
+    };
+  }
+});
 const starterKitFeatureValue = (value) => {
   if (!isFeatureEnabled(value)) {
     return false;
@@ -29688,6 +29800,9 @@ function buildExtensions(config) {
     }
   };
   const extensions = [index_default$4.configure(starterKitConfig)];
+  if (isFeatureEnabled(config.orderedList)) {
+    extensions.push(OrderedSublistShortcuts);
+  }
   if (isFeatureEnabled(config.heading)) {
     const headingConfig = getFeatureOptions(config.heading, {
       levels: [1, 2, 3, 4, 5, 6]
@@ -29794,7 +29909,12 @@ const InnerEditor = React.forwardRef(
             /* @__PURE__ */ jsxRuntime.jsx(Spacer, { width: 8 })
           ] }),
           /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.bulletList, children: starterKit.bulletButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.orderedList, children: starterKit.orderedButton }),
+          /* @__PURE__ */ jsxRuntime.jsxs(FeatureGuard, { featureValue: config?.orderedList, children: [
+            starterKit.orderedButton,
+            starterKit.alphabeticButton,
+            starterKit.indentListButton,
+            starterKit.outdentListButton
+          ] }),
           /* @__PURE__ */ jsxRuntime.jsx(Spacer, { width: 8 }),
           /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.code, children: starterKit.codeButton }),
           /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.blockquote, children: starterKit.blockquoteButton }),
@@ -29813,6 +29933,8 @@ const InnerEditor = React.forwardRef(
             table.removeColumnButton,
             table.addRowButton,
             table.removeRowButton,
+            table.mergeCellsButton,
+            table.splitCellButton,
             table.tableDialog
           ] })
         ]

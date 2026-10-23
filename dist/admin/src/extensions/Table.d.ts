@@ -7,5 +7,7 @@ export declare function useTable(editor: Editor | null, props?: {
     removeColumnButton: import("react/jsx-runtime").JSX.Element;
     addRowButton: import("react/jsx-runtime").JSX.Element;
     removeRowButton: import("react/jsx-runtime").JSX.Element;
+    mergeCellsButton: import("react/jsx-runtime").JSX.Element;
+    splitCellButton: import("react/jsx-runtime").JSX.Element;
     tableDialog: import("react/jsx-runtime").JSX.Element;
 };

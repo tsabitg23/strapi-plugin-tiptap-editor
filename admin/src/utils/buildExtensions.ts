@@ -11,6 +11,7 @@ import Highlight from '@tiptap/extension-highlight';
 import { BaseHeadingWithSEOTag } from '../extensions/Heading';
 import { PasteStripper } from '../extensions/PasteStripper';
 import { StrapiImage } from '../extensions/Image';
+import { OrderedSublistShortcuts } from '../extensions/OrderedList';
 import { TiptapPresetConfig, isFeatureEnabled, getFeatureOptions } from '../../../shared/types';
 
 // Helper: converts a preset feature value to StarterKit's expected format
@@ -47,6 +48,10 @@ export function buildExtensions(config: TiptapPresetConfig): Extensions {
   };
 
   const extensions: Extensions = [StarterKit.configure(starterKitConfig)];
+
+  if (isFeatureEnabled(config.orderedList)) {
+    extensions.push(OrderedSublistShortcuts);
+  }
 
   if (isFeatureEnabled(config.heading)) {
     const headingConfig = getFeatureOptions(config.heading, {

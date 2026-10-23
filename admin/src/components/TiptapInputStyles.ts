@@ -69,6 +69,10 @@ export const TiptapInputStyles = styled.div`
     list-style: decimal;
   }
 
+  .ProseMirror ol[type='a'] {
+    list-style-type: lower-alpha;
+  }
+
   .ProseMirror li {
     margin: 0.25em 0;
   }
