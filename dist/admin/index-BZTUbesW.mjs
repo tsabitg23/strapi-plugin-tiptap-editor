@@ -1,10 +1,9 @@
-"use strict";
-const React = require("react");
-const admin = require("@strapi/strapi/admin");
-const jsxRuntime = require("react/jsx-runtime");
-const designSystem = require("@strapi/design-system");
-const reactIntl = require("react-intl");
-const icons = require("@strapi/icons");
+import { useRef, useEffect, useState } from "react";
+import { useFetchClient } from "@strapi/strapi/admin";
+import { jsx } from "react/jsx-runtime";
+import { SingleSelect, SingleSelectOption } from "@strapi/design-system";
+import { useIntl } from "react-intl";
+import { Paragraph } from "@strapi/icons";
 const __variableDynamicImportRuntimeHelper = (glob, path, segs) => {
   const v = glob[path];
   if (v) {
@@ -73,9 +72,9 @@ function reconcileThemeStyles(theme) {
   });
 }
 const Initializer = ({ setPlugin }) => {
-  const ref = React.useRef(setPlugin);
-  const { get } = admin.useFetchClient();
-  React.useEffect(() => {
+  const ref = useRef(setPlugin);
+  const { get } = useFetchClient();
+  useEffect(() => {
     const fetchTheme = async () => {
       let themeStyles = {};
       try {
@@ -104,15 +103,15 @@ const Initializer = ({ setPlugin }) => {
   return null;
 };
 function PresetSelect({ value, onChange, name }) {
-  const { formatMessage } = reactIntl.useIntl();
-  const { get } = admin.useFetchClient();
-  const [presets, setPresets] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-  React.useEffect(() => {
+  const { formatMessage } = useIntl();
+  const { get } = useFetchClient();
+  const [presets, setPresets] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
     get("/tiptap-editor/presets").then((res) => setPresets(res.data?.presets ?? [])).catch(() => setPresets([])).finally(() => setIsLoading(false));
   }, [get]);
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    designSystem.SingleSelect,
+  return /* @__PURE__ */ jsx(
+    SingleSelect,
     {
       name,
       value: value || "",
@@ -121,7 +120,7 @@ function PresetSelect({ value, onChange, name }) {
       },
       placeholder: presets.length === 0 ? formatMessage({ id: "tiptap-editor.preset.noPresetsAvailable", defaultMessage: "No presets available" }) : formatMessage({ id: "tiptap-editor.preset.selectPreset", defaultMessage: "Select a preset" }),
       disabled: isLoading || presets.length === 0,
-      children: presets.map((presetName) => /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: presetName, children: presetName }, presetName))
+      children: presets.map((presetName) => /* @__PURE__ */ jsx(SingleSelectOption, { value: presetName, children: presetName }, presetName))
     }
   );
 }
@@ -145,9 +144,9 @@ const richTextField = {
     id: "tiptap-editor.richText.description",
     defaultMessage: "Use this field to create formatted text via Tiptap editor."
   },
-  icon: icons.Paragraph,
+  icon: Paragraph,
   components: {
-    Input: async () => Promise.resolve().then(() => require("./RichTextInput-bXR1cFV0.js")).then((m) => ({ default: m.default }))
+    Input: async () => import("./RichTextInput-Dshst0eN.mjs").then((m) => ({ default: m.default }))
   },
   options: {
     advanced: [
@@ -201,7 +200,7 @@ const index = {
     return Promise.all(
       locales.map(async (locale) => {
         try {
-          const { default: data } = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./translations/en.json": () => Promise.resolve().then(() => require("./en-fytkVDTF.js")) }), `./translations/${locale}.json`, 3);
+          const { default: data } = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./translations/en.json": () => import("./en-XDACE-mj.mjs") }), `./translations/${locale}.json`, 3);
           return { data, locale };
         } catch {
           return { data: {}, locale };
@@ -210,6 +209,8 @@ const index = {
     );
   }
 };
-exports.getMediaLibraryComponent = getMediaLibraryComponent;
-exports.getThemeCache = getThemeCache;
-exports.index = index;
+export {
+  getThemeCache as a,
+  getMediaLibraryComponent as g,
+  index as i
+};

@@ -39,7 +39,8 @@ const PRESET_FEATURE_KEYS = [
   "subscript",
   "textColor",
   "highlightColor",
-  "mediaLibrary"
+  "mediaLibrary",
+  "pdfAttachment"
 ];
 const MINIMAL_PRESET_CONFIG = {
   bold: true,

@@ -21,6 +21,13 @@ describe('buildExtensions', () => {
     expect(hasStarterKit).toBe(true);
   });
 
+  it('keeps PDF nodes in the schema even when the button is disabled', () => {
+    for (const pdfAttachment of [undefined, false, true]) {
+      const extensions = buildExtensions({ pdfAttachment });
+      expect(extensions.some((ext: any) => ext.name === 'pdfAttachment')).toBe(true);
+    }
+  });
+
   it('always includes Gapcursor', () => {
     const extensions = buildExtensions({});
     const hasGapcursor = extensions.some(

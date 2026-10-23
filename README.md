@@ -414,6 +414,10 @@ Both features use a color picker popover that displays the colors defined in the
 }
 ```
 
+### PDF attachments
+
+Set `pdfAttachment: true` in a preset to add a PDF button. Editors can upload or select a PDF in Strapi's Media Library and insert a download card at the cursor between paragraphs. Non-PDF files cannot be inserted. The saved `pdfAttachment` block contains `url`, `name`, and `assetId`; the node remains readable if the feature is later disabled. Frontends rendering Tiptap JSON must register a compatible `pdfAttachment` block node.
+
 ### Images
 
 | Key            | Description                      | Toolbar                                                   |

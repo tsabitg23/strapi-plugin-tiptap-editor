@@ -25,6 +25,8 @@ const en = {
   "tiptap-editor.toolbar.textAlignRight": "Text Align Right",
   "tiptap-editor.toolbar.textAlignJustify": "Text Align Justify",
   "tiptap-editor.toolbar.insertImage": "Insert image",
+  "tiptap-editor.toolbar.insertPdf": "Insert PDF",
+  "tiptap-editor.pdf.invalid": "Select a PDF file to insert.",
   "tiptap-editor.toolbar.table": "Table",
   "tiptap-editor.toolbar.addColumn": "Add column (to the right)",
   "tiptap-editor.toolbar.removeColumn": "Remove column",

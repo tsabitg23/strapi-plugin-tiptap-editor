@@ -11,6 +11,7 @@ import Highlight from '@tiptap/extension-highlight';
 import { BaseHeadingWithSEOTag } from '../extensions/Heading';
 import { PasteStripper } from '../extensions/PasteStripper';
 import { StrapiImage } from '../extensions/Image';
+import { PdfAttachmentNode } from '../extensions/PdfAttachmentNode';
 import { OrderedSublistShortcuts } from '../extensions/OrderedList';
 import { TiptapPresetConfig, isFeatureEnabled, getFeatureOptions } from '../../../shared/types';
 
@@ -116,6 +117,8 @@ export function buildExtensions(config: TiptapPresetConfig): Extensions {
     extensions.push(StrapiImage.configure({ enableContentCheck: true }));
   }
 
+  // Keep the node schema available even when its insertion button is disabled.
+  extensions.push(PdfAttachmentNode);
   extensions.push(Gapcursor);
 
   return extensions;

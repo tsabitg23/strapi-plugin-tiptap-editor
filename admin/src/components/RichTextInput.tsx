@@ -10,6 +10,7 @@ import { useStarterKit } from '../extensions/StarterKit';
 import { useLink } from '../extensions/Link';
 import { useHeading } from '../extensions/Heading';
 import { useImage } from '../extensions/Image';
+import { usePdfAttachment } from '../extensions/PdfAttachment';
 import { useScript } from '../extensions/Script';
 import { useTable } from '../extensions/Table';
 import { useTextAlign } from '../extensions/TextAlign';
@@ -42,6 +43,7 @@ const InnerEditor = forwardRef<HTMLDivElement, InnerEditorProps>(
     const heading = useHeading(editor, { disabled: props.disabled, levels: headingOptions?.levels });
     const link = useLink(editor, { disabled: props.disabled });
     const image = useImage(editor, { disabled: props.disabled });
+    const pdf = usePdfAttachment(editor, { disabled: props.disabled });
     const script = useScript(editor, { disabled: props.disabled });
     const table = useTable(editor, { disabled: props.disabled });
     const textAlign = useTextAlign(editor, { disabled: props.disabled });
@@ -119,6 +121,11 @@ const InnerEditor = forwardRef<HTMLDivElement, InnerEditorProps>(
           <FeatureGuard featureValue={config?.mediaLibrary}>
             {image.imageButton}
             {image.imageDialog}
+          </FeatureGuard>
+          <FeatureGuard featureValue={config?.pdfAttachment}>
+            {pdf.pdfButton}
+            {pdf.pdfDialog}
+            {pdf.pdfError}
           </FeatureGuard>
           <FeatureGuard featureValue={config?.table}>
             <Spacer width={8} />

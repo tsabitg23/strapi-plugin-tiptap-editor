@@ -117,6 +117,9 @@ vi.mock('../../admin/src/extensions/Image', () => ({
   useImage: () => mockImage,
   StrapiImage: { configure: vi.fn(() => ({})) },
 }));
+vi.mock('../../admin/src/extensions/PdfAttachment', () => ({
+  usePdfAttachment: () => ({ pdfButton: null, pdfDialog: null, pdfError: null }),
+}));
 
 // ─── Mock components ──────────────────────────────────────────────────────────
 vi.mock('../../admin/src/components/BaseTiptapInput', () => ({

@@ -5,6 +5,7 @@ export interface StrapiFile {
   id: number;
   name: string;
   alternativeText?: string | null;
+  mime?: string;
   url?: string;
 }
 
@@ -12,9 +13,10 @@ interface MediaLibraryWrapperProps {
   open: boolean;
   onClose: () => void;
   onSelectAssets: (assets: StrapiFile[]) => void;
+  allowedTypes?: Array<'images' | 'files'>;
 }
 
-export function MediaLibraryWrapper({ open, onClose, onSelectAssets }: MediaLibraryWrapperProps) {
+export function MediaLibraryWrapper({ open, onClose, onSelectAssets, allowedTypes = ['images'] }: MediaLibraryWrapperProps) {
   if (!open) return null;
 
   const MediaLibraryDialogComp = getMediaLibraryComponent();
@@ -27,7 +29,7 @@ export function MediaLibraryWrapper({ open, onClose, onSelectAssets }: MediaLibr
     <MediaLibraryDialogComp
       onClose={onClose}
       onSelectAssets={onSelectAssets}
-      allowedTypes={['images']}
+      allowedTypes={allowedTypes}
       multiple={false}
     />
   );

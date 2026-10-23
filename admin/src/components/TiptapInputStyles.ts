@@ -130,6 +130,31 @@ export const TiptapInputStyles = styled.div`
     text-decoration: line-through;
   }
 
+  /* --- PDF attachments --- */
+  .ProseMirror a[data-type="pdf-attachment"] {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.75rem 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid ${({ theme }) => theme.colors.neutral300};
+    border-radius: 0.5rem;
+    background: ${({ theme }) => theme.colors.neutral100};
+    overflow-wrap: anywhere;
+  }
+
+  .ProseMirror a[data-type="pdf-attachment"]::before {
+    content: 'PDF';
+    flex: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.danger600};
+  }
+
+  .ProseMirror a[data-type="pdf-attachment"].ProseMirror-selectednode {
+    outline: 2px solid #4945ff;
+  }
+
   /* --- Images --- */
 
   .ProseMirror img {

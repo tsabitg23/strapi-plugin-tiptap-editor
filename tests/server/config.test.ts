@@ -6,6 +6,10 @@ describe('config validator (SERVER-01)', () => {
     expect(() => config.validator({})).not.toThrow();
   });
 
+  it('accepts a PDF attachment preset', () => {
+    expect(() => config.validator({ presets: { rich: { pdfAttachment: true } } })).not.toThrow();
+  });
+
   it('passes for valid preset', () => {
     expect(() =>
       config.validator({ presets: { rich: { bold: true, heading: { levels: [1, 2] } } } })

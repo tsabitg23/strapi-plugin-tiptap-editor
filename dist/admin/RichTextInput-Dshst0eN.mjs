@@ -1,21 +1,15 @@
-"use strict";
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const jsxRuntime = require("react/jsx-runtime");
-const React = require("react");
-const reactIntl = require("react-intl");
-const designSystem = require("@strapi/design-system");
-const ReactDOM = require("react-dom");
-const styled = require("styled-components");
-const admin = require("@strapi/strapi/admin");
-const icons = require("@strapi/icons");
-const index = require("./index-Xk3hWYFT.js");
-const _interopDefault = (e) => e && e.__esModule ? e : { default: e };
-const React__default = /* @__PURE__ */ _interopDefault(React);
-const ReactDOM__default = /* @__PURE__ */ _interopDefault(ReactDOM);
-const styled__default = /* @__PURE__ */ _interopDefault(styled);
+import { jsx, jsxs, Fragment as Fragment$1 } from "react/jsx-runtime";
+import React, { useRef, useState, useDebugValue, useEffect, useLayoutEffect, forwardRef, createRef, memo, createElement, createContext, version, useContext, useMemo, Component, useCallback } from "react";
+import { useIntl } from "react-intl";
+import { Field, Box, Status, Typography, Flex, Button, Tooltip, Dialog, TextInput, SingleSelect, SingleSelectOption, Popover, IconButton } from "@strapi/design-system";
+import ReactDOM, { flushSync } from "react-dom";
+import styled from "styled-components";
+import { useField, useFetchClient } from "@strapi/strapi/admin";
+import { Quotes, Code as Code$1, NumberList, BulletList as BulletList$1, StrikeThrough, Underline as Underline$1, Italic as Italic$1, Bold as Bold$1, Link as Link$1, Cross, Trash, Image as Image$1, FilePdf, GridNine } from "@strapi/icons";
+import { g as getMediaLibraryComponent, a as getThemeCache } from "./index-BZTUbesW.mjs";
 var shim = { exports: {} };
 var useSyncExternalStoreShim_production = {};
 /**
@@ -31,14 +25,14 @@ var hasRequiredUseSyncExternalStoreShim_production;
 function requireUseSyncExternalStoreShim_production() {
   if (hasRequiredUseSyncExternalStoreShim_production) return useSyncExternalStoreShim_production;
   hasRequiredUseSyncExternalStoreShim_production = 1;
-  var React2 = React__default.default;
+  var React$1 = React;
   function is(x, y) {
     return x === y && (0 !== x || 1 / x === 1 / y) || x !== x && y !== y;
   }
-  var objectIs = "function" === typeof Object.is ? Object.is : is, useState = React2.useState, useEffect = React2.useEffect, useLayoutEffect = React2.useLayoutEffect, useDebugValue = React2.useDebugValue;
+  var objectIs = "function" === typeof Object.is ? Object.is : is, useState2 = React$1.useState, useEffect2 = React$1.useEffect, useLayoutEffect2 = React$1.useLayoutEffect, useDebugValue2 = React$1.useDebugValue;
   function useSyncExternalStore$2(subscribe, getSnapshot) {
-    var value = getSnapshot(), _useState = useState({ inst: { value, getSnapshot } }), inst = _useState[0].inst, forceUpdate = _useState[1];
-    useLayoutEffect(
+    var value = getSnapshot(), _useState = useState2({ inst: { value, getSnapshot } }), inst = _useState[0].inst, forceUpdate = _useState[1];
+    useLayoutEffect2(
       function() {
         inst.value = value;
         inst.getSnapshot = getSnapshot;
@@ -46,7 +40,7 @@ function requireUseSyncExternalStoreShim_production() {
       },
       [subscribe, value, getSnapshot]
     );
-    useEffect(
+    useEffect2(
       function() {
         checkIfSnapshotChanged(inst) && forceUpdate({ inst });
         return subscribe(function() {
@@ -55,7 +49,7 @@ function requireUseSyncExternalStoreShim_production() {
       },
       [subscribe]
     );
-    useDebugValue(value);
+    useDebugValue2(value);
     return value;
   }
   function checkIfSnapshotChanged(inst) {
@@ -72,7 +66,7 @@ function requireUseSyncExternalStoreShim_production() {
     return getSnapshot();
   }
   var shim2 = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
-  useSyncExternalStoreShim_production.useSyncExternalStore = void 0 !== React2.useSyncExternalStore ? React2.useSyncExternalStore : shim2;
+  useSyncExternalStoreShim_production.useSyncExternalStore = void 0 !== React$1.useSyncExternalStore ? React$1.useSyncExternalStore : shim2;
   return useSyncExternalStoreShim_production;
 }
 var useSyncExternalStoreShim_development = {};
@@ -94,7 +88,7 @@ function requireUseSyncExternalStoreShim_development() {
       return x === y && (0 !== x || 1 / x === 1 / y) || x !== x && y !== y;
     }
     function useSyncExternalStore$2(subscribe, getSnapshot) {
-      didWarnOld18Alpha || void 0 === React2.startTransition || (didWarnOld18Alpha = true, console.error(
+      didWarnOld18Alpha || void 0 === React$1.startTransition || (didWarnOld18Alpha = true, console.error(
         "You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release."
       ));
       var value = getSnapshot();
@@ -104,11 +98,11 @@ function requireUseSyncExternalStoreShim_development() {
           "The result of getSnapshot should be cached to avoid an infinite loop"
         ), didWarnUncachedGetSnapshot = true);
       }
-      cachedValue = useState({
+      cachedValue = useState2({
         inst: { value, getSnapshot }
       });
       var inst = cachedValue[0].inst, forceUpdate = cachedValue[1];
-      useLayoutEffect(
+      useLayoutEffect2(
         function() {
           inst.value = value;
           inst.getSnapshot = getSnapshot;
@@ -116,7 +110,7 @@ function requireUseSyncExternalStoreShim_development() {
         },
         [subscribe, value, getSnapshot]
       );
-      useEffect(
+      useEffect2(
         function() {
           checkIfSnapshotChanged(inst) && forceUpdate({ inst });
           return subscribe(function() {
@@ -125,7 +119,7 @@ function requireUseSyncExternalStoreShim_development() {
         },
         [subscribe]
       );
-      useDebugValue(value);
+      useDebugValue2(value);
       return value;
     }
     function checkIfSnapshotChanged(inst) {
@@ -142,8 +136,8 @@ function requireUseSyncExternalStoreShim_development() {
       return getSnapshot();
     }
     "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-    var React2 = React__default.default, objectIs = "function" === typeof Object.is ? Object.is : is, useState = React2.useState, useEffect = React2.useEffect, useLayoutEffect = React2.useLayoutEffect, useDebugValue = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim2 = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
-    useSyncExternalStoreShim_development.useSyncExternalStore = void 0 !== React2.useSyncExternalStore ? React2.useSyncExternalStore : shim2;
+    var React$1 = React, objectIs = "function" === typeof Object.is ? Object.is : is, useState2 = React$1.useState, useEffect2 = React$1.useEffect, useLayoutEffect2 = React$1.useLayoutEffect, useDebugValue2 = React$1.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim2 = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+    useSyncExternalStoreShim_development.useSyncExternalStore = void 0 !== React$1.useSyncExternalStore ? React$1.useSyncExternalStore : shim2;
     "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
   })();
   return useSyncExternalStoreShim_development;
@@ -438,13 +432,13 @@ class Fragment {
   Create a new fragment in which the node at the given index is
   replaced by the given node.
   */
-  replaceChild(index2, node) {
-    let current = this.content[index2];
+  replaceChild(index, node) {
+    let current = this.content[index];
     if (current == node)
       return this;
     let copy2 = this.content.slice();
     let size = this.size + node.nodeSize - current.nodeSize;
-    copy2[index2] = node;
+    copy2[index] = node;
     return new Fragment(copy2, size);
   }
   /**
@@ -494,17 +488,17 @@ class Fragment {
   Get the child node at the given index. Raise an error when the
   index is out of range.
   */
-  child(index2) {
-    let found2 = this.content[index2];
+  child(index) {
+    let found2 = this.content[index];
     if (!found2)
-      throw new RangeError("Index " + index2 + " out of range for " + this);
+      throw new RangeError("Index " + index + " out of range for " + this);
     return found2;
   }
   /**
   Get the child node at the given index, if it exists.
   */
-  maybeChild(index2) {
-    return this.content[index2] || null;
+  maybeChild(index) {
+    return this.content[index] || null;
   }
   /**
   Call `f` for every child node, passing the node, its offset
@@ -624,8 +618,8 @@ class Fragment {
 }
 Fragment.empty = new Fragment([], 0);
 const found = { index: 0, offset: 0 };
-function retIndex(index2, offset) {
-  found.index = index2;
+function retIndex(index, offset) {
+  found.index = index;
   found.offset = offset;
   return found;
 }
@@ -864,26 +858,26 @@ class Slice {
 }
 Slice.empty = new Slice(Fragment.empty, 0, 0);
 function removeRange(content, from2, to) {
-  let { index: index2, offset } = content.findIndex(from2), child = content.maybeChild(index2);
+  let { index, offset } = content.findIndex(from2), child = content.maybeChild(index);
   let { index: indexTo, offset: offsetTo } = content.findIndex(to);
   if (offset == from2 || child.isText) {
     if (offsetTo != to && !content.child(indexTo).isText)
       throw new RangeError("Removing non-flat range");
     return content.cut(0, from2).append(content.cut(to));
   }
-  if (index2 != indexTo)
+  if (index != indexTo)
     throw new RangeError("Removing non-flat range");
-  return content.replaceChild(index2, child.copy(removeRange(child.content, from2 - offset - 1, to - offset - 1)));
+  return content.replaceChild(index, child.copy(removeRange(child.content, from2 - offset - 1, to - offset - 1)));
 }
 function insertInto(content, dist, insert, parent) {
-  let { index: index2, offset } = content.findIndex(dist), child = content.maybeChild(index2);
+  let { index, offset } = content.findIndex(dist), child = content.maybeChild(index);
   if (offset == dist || child.isText) {
-    if (parent && !parent.canReplace(index2, index2, insert))
+    if (parent && !parent.canReplace(index, index, insert))
       return null;
     return content.cut(0, dist).append(insert).append(content.cut(dist));
   }
   let inner = insertInto(child.content, dist - offset - 1, insert, child);
-  return inner && content.replaceChild(index2, child.copy(inner));
+  return inner && content.replaceChild(index, child.copy(inner));
 }
 function replace($from, $to, slice2) {
   if (slice2.openStart > $from.depth)
@@ -893,10 +887,10 @@ function replace($from, $to, slice2) {
   return replaceOuter($from, $to, slice2, 0);
 }
 function replaceOuter($from, $to, slice2, depth) {
-  let index2 = $from.index(depth), node = $from.node(depth);
-  if (index2 == $to.index(depth) && depth < $from.depth - slice2.openStart) {
+  let index = $from.index(depth), node = $from.node(depth);
+  if (index == $to.index(depth) && depth < $from.depth - slice2.openStart) {
     let inner = replaceOuter($from, $to, slice2, depth + 1);
-    return node.copy(node.content.replaceChild(index2, inner));
+    return node.copy(node.content.replaceChild(index, inner));
   } else if (!slice2.content.size) {
     return close(node, replaceTwoWay($from, $to, depth));
   } else if (!slice2.openStart && !slice2.openEnd && $from.depth == depth && $to.depth == depth) {
@@ -1090,11 +1084,11 @@ class ResolvedPos {
   position is returned.
   */
   get nodeAfter() {
-    let parent = this.parent, index2 = this.index(this.depth);
-    if (index2 == parent.childCount)
+    let parent = this.parent, index = this.index(this.depth);
+    if (index == parent.childCount)
       return null;
-    let dOff = this.pos - this.path[this.path.length - 1], child = parent.child(index2);
-    return dOff ? parent.child(index2).cut(dOff) : child;
+    let dOff = this.pos - this.path[this.path.length - 1], child = parent.child(index);
+    return dOff ? parent.child(index).cut(dOff) : child;
   }
   /**
   Get the node directly before the position, if any. If the
@@ -1102,20 +1096,20 @@ class ResolvedPos {
   before the position is returned.
   */
   get nodeBefore() {
-    let index2 = this.index(this.depth);
+    let index = this.index(this.depth);
     let dOff = this.pos - this.path[this.path.length - 1];
     if (dOff)
-      return this.parent.child(index2).cut(0, dOff);
-    return index2 == 0 ? null : this.parent.child(index2 - 1);
+      return this.parent.child(index).cut(0, dOff);
+    return index == 0 ? null : this.parent.child(index - 1);
   }
   /**
   Get the position at the given index in the parent node at the
   given depth (which defaults to `this.depth`).
   */
-  posAtIndex(index2, depth) {
+  posAtIndex(index, depth) {
     depth = this.resolveDepth(depth);
     let node = this.path[depth * 3], pos = depth == 0 ? 0 : this.path[depth * 3 - 1] + 1;
-    for (let i = 0; i < index2; i++)
+    for (let i = 0; i < index; i++)
       pos += node.child(i).nodeSize;
     return pos;
   }
@@ -1126,12 +1120,12 @@ class ResolvedPos {
   node after it (if any) are returned.
   */
   marks() {
-    let parent = this.parent, index2 = this.index();
+    let parent = this.parent, index = this.index();
     if (parent.content.size == 0)
       return Mark$1.none;
     if (this.textOffset)
-      return parent.child(index2).marks;
-    let main = parent.maybeChild(index2 - 1), other = parent.maybeChild(index2);
+      return parent.child(index).marks;
+    let main = parent.maybeChild(index - 1), other = parent.maybeChild(index);
     if (!main) {
       let tmp = main;
       main = other;
@@ -1224,12 +1218,12 @@ class ResolvedPos {
     let path = [];
     let start = 0, parentOffset = pos;
     for (let node = doc2; ; ) {
-      let { index: index2, offset } = node.content.findIndex(parentOffset);
+      let { index, offset } = node.content.findIndex(parentOffset);
       let rem = parentOffset - offset;
-      path.push(node, index2, start + offset);
+      path.push(node, index, start + offset);
       if (!rem)
         break;
-      node = node.child(index2);
+      node = node.child(index);
       if (node.isText)
         break;
       parentOffset = rem - 1;
@@ -1342,14 +1336,14 @@ class Node {
   Get the child node at the given index. Raises an error when the
   index is out of range.
   */
-  child(index2) {
-    return this.content.child(index2);
+  child(index) {
+    return this.content.child(index);
   }
   /**
   Get the child node at the given index, if it exists.
   */
-  maybeChild(index2) {
-    return this.content.maybeChild(index2);
+  maybeChild(index) {
+    return this.content.maybeChild(index);
   }
   /**
   Call `f` for every child node, passing the node, its offset
@@ -1484,8 +1478,8 @@ class Node {
   */
   nodeAt(pos) {
     for (let node = this; ; ) {
-      let { index: index2, offset } = node.content.findIndex(pos);
-      node = node.maybeChild(index2);
+      let { index, offset } = node.content.findIndex(pos);
+      node = node.maybeChild(index);
       if (!node)
         return null;
       if (offset == pos || node.isText)
@@ -1499,8 +1493,8 @@ class Node {
   node.
   */
   childAfter(pos) {
-    let { index: index2, offset } = this.content.findIndex(pos);
-    return { node: this.content.maybeChild(index2), index: index2, offset };
+    let { index, offset } = this.content.findIndex(pos);
+    return { node: this.content.maybeChild(index), index, offset };
   }
   /**
   Find the (direct) child node before the given offset, if any,
@@ -1510,11 +1504,11 @@ class Node {
   childBefore(pos) {
     if (pos == 0)
       return { node: null, index: 0, offset: 0 };
-    let { index: index2, offset } = this.content.findIndex(pos);
+    let { index, offset } = this.content.findIndex(pos);
     if (offset < pos)
-      return { node: this.content.child(index2), index: index2, offset };
-    let node = this.content.child(index2 - 1);
-    return { node, index: index2 - 1, offset: offset - node.nodeSize };
+      return { node: this.content.child(index), index, offset };
+    let node = this.content.child(index - 1);
+    return { node, index: index - 1, offset: offset - node.nodeSize };
   }
   /**
   Resolve the given position in the document, returning an
@@ -1606,8 +1600,8 @@ class Node {
   /**
   Get the content match in this node at the given index.
   */
-  contentMatchAt(index2) {
-    let match = this.type.contentMatch.matchFragment(this.content, 0, index2);
+  contentMatchAt(index) {
+    let match = this.type.contentMatch.matchFragment(this.content, 0, index);
     if (!match)
       throw new Error("Called contentMatchAt on a node with invalid content");
     return match;
@@ -3019,12 +3013,12 @@ class ParseContext {
   // whole node, if not given). If `sync` is passed, use it to
   // synchronize after every block element.
   addAll(parent, marks, startIndex, endIndex) {
-    let index2 = startIndex || 0;
-    for (let dom = startIndex ? parent.childNodes[startIndex] : parent.firstChild, end = endIndex == null ? null : parent.childNodes[endIndex]; dom != end; dom = dom.nextSibling, ++index2) {
-      this.findAtPoint(parent, index2);
+    let index = startIndex || 0;
+    for (let dom = startIndex ? parent.childNodes[startIndex] : parent.firstChild, end = endIndex == null ? null : parent.childNodes[endIndex]; dom != end; dom = dom.nextSibling, ++index) {
+      this.findAtPoint(parent, index);
       this.addDOM(dom, marks);
     }
-    this.findAtPoint(parent, index2);
+    this.findAtPoint(parent, index);
   }
   // Try to find a way to fit the given node type into the current
   // context. May add intermediate wrappers and/or leave non-solid
@@ -3470,8 +3464,8 @@ function renderSpec(doc2, structure, xmlNS, blockArraysIn) {
 }
 const lower16 = 65535;
 const factor16 = Math.pow(2, 16);
-function makeRecover(index2, offset) {
-  return index2 + offset * factor16;
+function makeRecover(index, offset) {
+  return index + offset * factor16;
 }
 function recoverIndex(value) {
   return value & lower16;
@@ -3534,11 +3528,11 @@ class StepMap {
   @internal
   */
   recover(value) {
-    let diff = 0, index2 = recoverIndex(value);
+    let diff = 0, index = recoverIndex(value);
     if (!this.inverted)
-      for (let i = 0; i < index2; i++)
+      for (let i = 0; i < index; i++)
         diff += this.ranges[i * 3 + 2] - this.ranges[i * 3 + 1];
-    return this.ranges[index2 * 3] + diff + recoverOffset(value);
+    return this.ranges[index * 3] + diff + recoverOffset(value);
   }
   mapResult(pos, assoc = 1) {
     return this._map(pos, assoc, false);
@@ -3575,14 +3569,14 @@ class StepMap {
   @internal
   */
   touches(pos, recover) {
-    let diff = 0, index2 = recoverIndex(recover);
+    let diff = 0, index = recoverIndex(recover);
     let oldIndex = this.inverted ? 2 : 1, newIndex = this.inverted ? 1 : 2;
     for (let i = 0; i < this.ranges.length; i += 3) {
       let start = this.ranges[i] - (this.inverted ? diff : 0);
       if (start > pos)
         break;
       let oldSize = this.ranges[i + oldIndex], end = start + oldSize;
-      if (pos <= end && i == index2 * 3)
+      if (pos <= end && i == index * 3)
         return true;
       diff += this.ranges[i + newIndex] - oldSize;
     }
@@ -4286,12 +4280,12 @@ function liftTarget(range) {
   let content = parent.content.cutByIndex(range.startIndex, range.endIndex);
   for (let depth = range.depth, contentBefore = 0, contentAfter = 0; ; --depth) {
     let node = range.$from.node(depth);
-    let index2 = range.$from.index(depth) + contentBefore, endIndex = range.$to.indexAfter(depth) - contentAfter;
-    if (depth < range.depth && node.canReplace(index2, endIndex, content))
+    let index = range.$from.index(depth) + contentBefore, endIndex = range.$to.indexAfter(depth) - contentAfter;
+    if (depth < range.depth && node.canReplace(index, endIndex, content))
       return depth;
-    if (depth == 0 || node.type.spec.isolating || !canCut(node, index2, endIndex))
+    if (depth == 0 || node.type.spec.isolating || !canCut(node, index, endIndex))
       break;
-    if (index2)
+    if (index)
       contentBefore = 1;
     if (endIndex < node.childCount)
       contentAfter = 1;
@@ -4414,8 +4408,8 @@ function replaceLinebreaks(tr2, node, pos, mapFrom) {
   });
 }
 function canChangeType(doc2, pos, type) {
-  let $pos = doc2.resolve(pos), index2 = $pos.index();
-  return $pos.parent.canReplaceWith(index2, index2 + 1, type);
+  let $pos = doc2.resolve(pos), index = $pos.index();
+  return $pos.parent.canReplaceWith(index, index + 1, type);
 }
 function setNodeMarkup(tr2, pos, type, attrs, marks) {
   let node = tr2.doc.nodeAt(pos);
@@ -4436,20 +4430,20 @@ function canSplit(doc2, pos, depth = 1, typesAfter) {
   if (base2 < 0 || $pos.parent.type.spec.isolating || !$pos.parent.canReplace($pos.index(), $pos.parent.childCount) || !innerType.type.validContent($pos.parent.content.cutByIndex($pos.index(), $pos.parent.childCount)))
     return false;
   for (let d = $pos.depth - 1, i = depth - 2; d > base2; d--, i--) {
-    let node = $pos.node(d), index3 = $pos.index(d);
+    let node = $pos.node(d), index2 = $pos.index(d);
     if (node.type.spec.isolating)
       return false;
-    let rest = node.content.cutByIndex(index3, node.childCount);
+    let rest = node.content.cutByIndex(index2, node.childCount);
     let overrideChild = typesAfter && typesAfter[i + 1];
     if (overrideChild)
       rest = rest.replaceChild(0, overrideChild.type.create(overrideChild.attrs));
     let after = typesAfter && typesAfter[i] || node;
-    if (!node.canReplace(index3 + 1, node.childCount) || !after.type.validContent(rest))
+    if (!node.canReplace(index2 + 1, node.childCount) || !after.type.validContent(rest))
       return false;
   }
-  let index2 = $pos.indexAfter(base2);
+  let index = $pos.indexAfter(base2);
   let baseType = typesAfter && typesAfter[0];
-  return $pos.node(base2).canReplaceWith(index2, index2, baseType ? baseType.type : $pos.node(base2 + 1).type);
+  return $pos.node(base2).canReplaceWith(index, index, baseType ? baseType.type : $pos.node(base2 + 1).type);
 }
 function split(tr2, pos, depth = 1, typesAfter) {
   let $pos = tr2.doc.resolve(pos), before = Fragment.empty, after = Fragment.empty;
@@ -4461,8 +4455,8 @@ function split(tr2, pos, depth = 1, typesAfter) {
   tr2.step(new ReplaceStep(pos, pos, new Slice(before.append(after), depth, depth), true));
 }
 function canJoin(doc2, pos) {
-  let $pos = doc2.resolve(pos), index2 = $pos.index();
-  return joinable($pos.nodeBefore, $pos.nodeAfter) && $pos.parent.canReplace(index2, index2 + 1);
+  let $pos = doc2.resolve(pos), index = $pos.index();
+  return joinable($pos.nodeBefore, $pos.nodeAfter) && $pos.parent.canReplace(index, index + 1);
 }
 function canAppendWithSubstitutedLinebreaks(a, b) {
   if (!b.content.size)
@@ -4486,19 +4480,19 @@ function joinable(a, b) {
 function joinPoint(doc2, pos, dir = -1) {
   let $pos = doc2.resolve(pos);
   for (let d = $pos.depth; ; d--) {
-    let before, after, index2 = $pos.index(d);
+    let before, after, index = $pos.index(d);
     if (d == $pos.depth) {
       before = $pos.nodeBefore;
       after = $pos.nodeAfter;
     } else if (dir > 0) {
       before = $pos.node(d + 1);
-      index2++;
-      after = $pos.node(d).maybeChild(index2);
+      index++;
+      after = $pos.node(d).maybeChild(index);
     } else {
-      before = $pos.node(d).maybeChild(index2 - 1);
+      before = $pos.node(d).maybeChild(index - 1);
       after = $pos.node(d + 1);
     }
-    if (before && !before.isTextblock && joinable(before, after) && $pos.node(d).canReplace(index2, index2 + 1))
+    if (before && !before.isTextblock && joinable(before, after) && $pos.node(d).canReplace(index, index + 1))
       return pos;
     if (d == 0)
       break;
@@ -4538,18 +4532,18 @@ function insertPoint(doc2, pos, nodeType) {
     return pos;
   if ($pos.parentOffset == 0)
     for (let d = $pos.depth - 1; d >= 0; d--) {
-      let index2 = $pos.index(d);
-      if ($pos.node(d).canReplaceWith(index2, index2, nodeType))
+      let index = $pos.index(d);
+      if ($pos.node(d).canReplaceWith(index, index, nodeType))
         return $pos.before(d + 1);
-      if (index2 > 0)
+      if (index > 0)
         return null;
     }
   if ($pos.parentOffset == $pos.parent.content.size)
     for (let d = $pos.depth - 1; d >= 0; d--) {
-      let index2 = $pos.indexAfter(d);
-      if ($pos.node(d).canReplaceWith(index2, index2, nodeType))
+      let index = $pos.indexAfter(d);
+      if ($pos.node(d).canReplaceWith(index, index, nodeType))
         return $pos.after(d + 1);
-      if (index2 < $pos.node(d).childCount)
+      if (index < $pos.node(d).childCount)
         return null;
     }
   return null;
@@ -4816,11 +4810,11 @@ function closeNodeStart(node, openStart, openEnd) {
   return node.copy(frag);
 }
 function contentAfterFits($to, depth, type, match, open) {
-  let node = $to.node(depth), index2 = open ? $to.indexAfter(depth) : $to.index(depth);
-  if (index2 == node.childCount && !type.compatibleContent(node.type))
+  let node = $to.node(depth), index = open ? $to.indexAfter(depth) : $to.index(depth);
+  if (index == node.childCount && !type.compatibleContent(node.type))
     return null;
-  let fit = match.fillBefore(node.content, true, index2);
-  return fit && !invalidMarks(type, node.content, index2) ? fit : null;
+  let fit = match.fillBefore(node.content, true, index);
+  return fit && !invalidMarks(type, node.content, index) ? fit : null;
 }
 function invalidMarks(type, fragment, start) {
   for (let i = start; i < fragment.childCount; i++)
@@ -4878,8 +4872,8 @@ function replaceRange(tr2, from2, to, slice2) {
         expand = false;
         targetDepth = -targetDepth;
       }
-      let parent = $from.node(targetDepth - 1), index2 = $from.index(targetDepth - 1);
-      if (parent.canReplaceWith(index2, index2, insert.type, insert.marks))
+      let parent = $from.node(targetDepth - 1), index = $from.index(targetDepth - 1);
+      if (parent.canReplaceWith(index, index, insert.type, insert.marks))
         return tr2.replace($from.before(targetDepth), expand ? $to.after(targetDepth) : to, new Slice(closeFragment(slice2.content, 0, slice2.openStart, openDepth), openDepth, slice2.openEnd));
     }
   }
@@ -5712,10 +5706,10 @@ const AllBookmark = {
     return new AllSelection(doc2);
   }
 };
-function findSelectionIn(doc2, node, pos, index2, dir, text = false) {
+function findSelectionIn(doc2, node, pos, index, dir, text = false) {
   if (node.inlineContent)
     return TextSelection.create(doc2, pos);
-  for (let i = index2 - (dir > 0 ? 0 : 1); dir > 0 ? i < node.childCount : i >= 0; i += dir) {
+  for (let i = index - (dir > 0 ? 0 : 1); dir > 0 ? i < node.childCount : i >= 0; i += dir) {
     let child = node.child(i);
     if (!child.isAtom) {
       let inner = findSelectionIn(doc2, child, pos + dir, dir < 0 ? child.childCount : 0, dir, text);
@@ -6585,15 +6579,15 @@ const selectParentNode$1 = (state, dispatch) => {
   return true;
 };
 function joinMaybeClear(state, $pos, dispatch) {
-  let before = $pos.nodeBefore, after = $pos.nodeAfter, index2 = $pos.index();
+  let before = $pos.nodeBefore, after = $pos.nodeAfter, index = $pos.index();
   if (!before || !after || !before.type.compatibleContent(after.type))
     return false;
-  if (!before.content.size && $pos.parent.canReplace(index2 - 1, index2)) {
+  if (!before.content.size && $pos.parent.canReplace(index - 1, index)) {
     if (dispatch)
       dispatch(state.tr.delete($pos.pos - before.nodeSize, $pos.pos).scrollIntoView());
     return true;
   }
-  if (!$pos.parent.canReplace(index2, index2 + 1) || !(after.isTextblock || canJoin(state.doc, $pos.pos)))
+  if (!$pos.parent.canReplace(index, index + 1) || !(after.isTextblock || canJoin(state.doc, $pos.pos)))
     return false;
   if (dispatch)
     dispatch(state.tr.join($pos.pos).scrollIntoView());
@@ -6692,8 +6686,8 @@ function setBlockType(nodeType, attrs = null) {
         if (node.type == nodeType) {
           applicable = true;
         } else {
-          let $pos = state.doc.resolve(pos), index2 = $pos.index();
-          applicable = $pos.parent.canReplaceWith(index2, index2 + 1, nodeType);
+          let $pos = state.doc.resolve(pos), index = $pos.index();
+          applicable = $pos.parent.canReplaceWith(index, index + 1, nodeType);
         }
       });
     }
@@ -6847,10 +6841,10 @@ function sinkListItem$1(itemType) {
   };
 }
 const domIndex = function(node) {
-  for (var index2 = 0; ; index2++) {
+  for (var index = 0; ; index++) {
     node = node.previousSibling;
     if (!node)
-      return index2;
+      return index;
   }
 };
 const parentNode = function(node) {
@@ -6939,12 +6933,12 @@ function isOnEdge(node, offset, parent) {
   for (let atStart = offset == 0, atEnd = offset == nodeSize(node); atStart || atEnd; ) {
     if (node == parent)
       return true;
-    let index2 = domIndex(node);
+    let index = domIndex(node);
     node = node.parentNode;
     if (!node)
       return false;
-    atStart = atStart && index2 == 0;
-    atEnd = atEnd && index2 == nodeSize(node);
+    atStart = atStart && index == 0;
+    atEnd = atEnd && index == nodeSize(node);
   }
 }
 function hasBlockDesc(dom) {
@@ -8503,9 +8497,9 @@ class ViewTreeUpdater {
   }
   // Try to find a node desc matching the given data. Skip over it and
   // return true when successful.
-  findNodeMatch(node, outerDeco, innerDeco, index2) {
+  findNodeMatch(node, outerDeco, innerDeco, index) {
     let found2 = -1, targetDesc;
-    if (index2 >= this.preMatch.index && (targetDesc = this.preMatch.matches[index2 - this.preMatch.index]).parent == this.top && targetDesc.matchesNode(node, outerDeco, innerDeco)) {
+    if (index >= this.preMatch.index && (targetDesc = this.preMatch.matches[index - this.preMatch.index]).parent == this.top && targetDesc.matchesNode(node, outerDeco, innerDeco)) {
       found2 = this.top.children.indexOf(targetDesc, this.index);
     } else {
       for (let i = this.index, e = Math.min(this.top.children.length, i + 5); i < e; i++) {
@@ -8522,13 +8516,13 @@ class ViewTreeUpdater {
     this.index++;
     return true;
   }
-  updateNodeAt(node, outerDeco, innerDeco, index2, view) {
-    let child = this.top.children[index2];
+  updateNodeAt(node, outerDeco, innerDeco, index, view) {
+    let child = this.top.children[index];
     if (child.dirty == NODE_DIRTY && child.dom == child.contentDOM)
       child.dirty = CONTENT_DIRTY;
     if (!child.update(node, outerDeco, innerDeco, view))
       return false;
-    this.destroyBetween(this.index, index2);
+    this.destroyBetween(this.index, index);
     this.index++;
     return true;
   }
@@ -8551,12 +8545,12 @@ class ViewTreeUpdater {
   }
   // Try to update the next node, if any, to the given data. Checks
   // pre-matches to avoid overwriting nodes that could still be used.
-  updateNextNode(node, outerDeco, innerDeco, view, index2, pos) {
+  updateNextNode(node, outerDeco, innerDeco, view, index, pos) {
     for (let i = this.index; i < this.top.children.length; i++) {
       let next = this.top.children[i];
       if (next instanceof NodeViewDesc) {
         let preMatch2 = this.preMatch.matched.get(next);
-        if (preMatch2 != null && preMatch2 != index2)
+        if (preMatch2 != null && preMatch2 != index)
           return false;
         let nextDOM = next.dom, updated;
         let locked = this.isLocked(nextDOM) && !(node.isText && next.node && next.node.isText && next.nodeDOM.nodeValue == node.text && next.dirty != NODE_DIRTY && sameOuterDeco(outerDeco, next.outerDeco));
@@ -8722,13 +8716,13 @@ function iterDeco(parent, deco, onWidget, onNode) {
         onWidget(widget, parentIndex, !!restNode);
       }
     }
-    let child, index2;
+    let child, index;
     if (restNode) {
-      index2 = -1;
+      index = -1;
       child = restNode;
       restNode = null;
     } else if (parentIndex < parent.childCount) {
-      index2 = parentIndex;
+      index = parentIndex;
       child = parent.child(parentIndex++);
     } else {
       break;
@@ -8750,14 +8744,14 @@ function iterDeco(parent, deco, onWidget, onNode) {
         restNode = child.cut(cutAt - offset);
         child = child.cut(0, cutAt - offset);
         end = cutAt;
-        index2 = -1;
+        index = -1;
       }
     } else {
       while (decoIndex < locals.length && locals[decoIndex].to < end)
         decoIndex++;
     }
     let outerDeco = child.isInline && !child.isLeaf ? active.filter((d) => !d.inline) : active.slice();
-    onNode(child, outerDeco, deco.forChild(offset, child), index2);
+    onNode(child, outerDeco, deco.forChild(offset, child), index);
     offset = end;
   }
 }
@@ -10359,8 +10353,8 @@ class NodeType2 {
     return new Decoration(from2.pos - offset, to.pos - offset, this);
   }
   valid(node, span) {
-    let { index: index2, offset } = node.content.findIndex(span.from), child;
-    return offset == span.from && !(child = node.child(index2)).isText && offset + child.nodeSize == span.to;
+    let { index, offset } = node.content.findIndex(span.from), child;
+    return offset == span.from && !(child = node.child(index)).isText && offset + child.nodeSize == span.to;
   }
   eq(other) {
     return this == other || other instanceof NodeType2 && compareObjs(this.attrs, other.attrs) && compareObjs(this.spec, other.spec);
@@ -10767,8 +10761,8 @@ function mapChildren(oldChildren, newLocal, mapping, node, offset, oldOffset, op
         continue;
       }
       let to = mapping.map(oldChildren[i + 1] + oldOffset, -1), toLocal = to - offset;
-      let { index: index2, offset: childOffset } = node.content.findIndex(fromLocal);
-      let childNode = node.maybeChild(index2);
+      let { index, offset: childOffset } = node.content.findIndex(fromLocal);
+      let childNode = node.maybeChild(index);
       if (childNode && childOffset == fromLocal && childOffset + childNode.nodeSize == toLocal) {
         let mapped = children[i + 2].mapInner(mapping, childNode, from2 + 1, oldChildren[i] + oldOffset + 1, options);
         if (mapped != empty) {
@@ -12735,7 +12729,7 @@ var focus = (position = null, options = {}) => ({ editor, view, tr: tr2, dispatc
   return true;
 };
 var forEach = (items, fn) => (props) => {
-  return items.every((item, index2) => fn(item, { ...props, index: index2 }));
+  return items.every((item, index) => fn(item, { ...props, index }));
 };
 var insertContent = (value, options) => ({ tr: tr2, commands }) => {
   return commands.insertContentAt({ from: tr2.selection.from, to: tr2.selection.to }, value, options);
@@ -13719,7 +13713,7 @@ function getSchemaByResolvedExtensions(extensions, editor) {
   });
 }
 function findDuplicates(items) {
-  const filtered = items.filter((el, index2) => items.indexOf(el) !== index2);
+  const filtered = items.filter((el, index) => items.indexOf(el) !== index);
   return Array.from(new Set(filtered));
 }
 function sortExtensions(extensions) {
@@ -13750,7 +13744,7 @@ function getTextBetween(startNode, range, options) {
   const { from: from2, to } = range;
   const { blockSeparator = "\n\n", textSerializers = {} } = options || {};
   let text = "";
-  startNode.nodesBetween(from2, to, (node, pos, parent, index2) => {
+  startNode.nodesBetween(from2, to, (node, pos, parent, index) => {
     var _a;
     if (node.isBlock && pos > from2) {
       text += blockSeparator;
@@ -13762,7 +13756,7 @@ function getTextBetween(startNode, range, options) {
           node,
           pos,
           parent,
-          index: index2,
+          index,
           range
         });
       }
@@ -13821,8 +13815,8 @@ function removeDuplicates(array, by = JSON.stringify) {
 }
 function simplifyChangedRanges(changes) {
   const uniqueChanges = removeDuplicates(changes);
-  return uniqueChanges.length === 1 ? uniqueChanges : uniqueChanges.filter((change, index2) => {
-    const rest = uniqueChanges.filter((_, i) => i !== index2);
+  return uniqueChanges.length === 1 ? uniqueChanges : uniqueChanges.filter((change, index) => {
+    const rest = uniqueChanges.filter((_, i) => i !== index);
     return !rest.some((otherChange) => {
       return change.oldRange.from >= otherChange.oldRange.from && change.oldRange.to <= otherChange.oldRange.to && change.newRange.from >= otherChange.newRange.from && change.newRange.to <= otherChange.newRange.to;
     });
@@ -13831,10 +13825,10 @@ function simplifyChangedRanges(changes) {
 function getChangedRanges(transform) {
   const { mapping, steps } = transform;
   const changes = [];
-  mapping.maps.forEach((stepMap, index2) => {
+  mapping.maps.forEach((stepMap, index) => {
     const ranges = [];
     if (!stepMap.ranges.length) {
-      const { from: from2, to } = steps[index2];
+      const { from: from2, to } = steps[index];
       if (from2 === void 0 || to === void 0) {
         return;
       }
@@ -13845,8 +13839,8 @@ function getChangedRanges(transform) {
       });
     }
     ranges.forEach(({ from: from2, to }) => {
-      const newStart = mapping.slice(index2).map(from2, -1);
-      const newEnd = mapping.slice(index2).map(to);
+      const newStart = mapping.slice(index).map(from2, -1);
+      const newEnd = mapping.slice(index).map(to);
       const oldStart = mapping.invert().map(newStart, -1);
       const oldEnd = mapping.invert().map(newEnd);
       changes.push({
@@ -13926,13 +13920,13 @@ function getSplittedAttributes(extensionAttributes, typeName, attributes) {
 var getTextContentFromNodes = ($from, maxMatch = 500) => {
   let textBefore = "";
   const sliceEndPos = $from.parentOffset;
-  $from.parent.nodesBetween(Math.max(0, sliceEndPos - maxMatch), sliceEndPos, (node, pos, parent, index2) => {
+  $from.parent.nodesBetween(Math.max(0, sliceEndPos - maxMatch), sliceEndPos, (node, pos, parent, index) => {
     var _a, _b;
     const chunk = ((_b = (_a = node.type.spec).toText) == null ? void 0 : _b.call(_a, {
       node,
       pos,
       parent,
-      index: index2
+      index
     })) || node.textContent || "%leaf%";
     textBefore += node.isAtom && !node.isText ? chunk : chunk.slice(0, Math.max(0, sliceEndPos - pos));
   });
@@ -15710,11 +15704,11 @@ var Delete = Extension.create({
         }
       });
       const mapping = nextTransaction.mapping;
-      nextTransaction.steps.forEach((step, index2) => {
+      nextTransaction.steps.forEach((step, index) => {
         var _a3, _b3;
         if (step instanceof RemoveMarkStep) {
-          const newStart = mapping.slice(index2).map(step.from, -1);
-          const newEnd = mapping.slice(index2).map(step.to);
+          const newStart = mapping.slice(index).map(step.from, -1);
+          const newEnd = mapping.slice(index).map(step.to);
           const oldStart = mapping.invert().map(newStart, -1);
           const oldEnd = mapping.invert().map(newEnd);
           const foundBeforeMark = (_a3 = nextTransaction.doc.nodeAt(newStart - 1)) == null ? void 0 : _a3.marks.some((mark) => mark.eq(step.mark));
@@ -16136,8 +16130,8 @@ var NodePos = class _NodePos {
         if (Object.keys(attributes).length > 0) {
           const nodeAttributes = currentNode.node.attrs;
           const attrKeys = Object.keys(attributes);
-          for (let index2 = 0; index2 < attrKeys.length; index2 += 1) {
-            const key = attrKeys[index2];
+          for (let index = 0; index < attrKeys.length; index += 1) {
+            const key = attrKeys[index];
             if (nodeAttributes[key] !== attributes[key]) {
               break;
             }
@@ -17478,15 +17472,15 @@ function canInsertNode(state, nodeType) {
   const { selection } = state;
   const { $from } = selection;
   if (selection instanceof NodeSelection) {
-    const index2 = $from.index();
+    const index = $from.index();
     const parent = $from.parent;
-    return parent.canReplaceWith(index2, index2 + 1, nodeType);
+    return parent.canReplaceWith(index, index + 1, nodeType);
   }
   let depth = $from.depth;
   while (depth >= 0) {
-    const index2 = $from.index(depth);
+    const index = $from.index(depth);
     const parent = $from.node(depth);
-    const match = parent.contentMatchAt(index2);
+    const match = parent.contentMatchAt(index);
     if (match.matchType(nodeType)) {
       return true;
     }
@@ -17602,8 +17596,8 @@ function createAtomBlockMarkdownSpec(options) {
       start(src) {
         var _a;
         const regex = new RegExp(`^:::${blockName}(?:\\s|$)`, "m");
-        const index2 = (_a = src.match(regex)) == null ? void 0 : _a.index;
-        return index2 !== void 0 ? index2 : -1;
+        const index = (_a = src.match(regex)) == null ? void 0 : _a.index;
+        return index !== void 0 ? index : -1;
       },
       tokenize(src, _tokens, _lexer) {
         const regex = new RegExp(`^:::${blockName}(?:\\s+\\{([^}]*)\\})?\\s*:::(?:\\n|$)`);
@@ -17676,8 +17670,8 @@ function createBlockMarkdownSpec(options) {
       start(src) {
         var _a;
         const regex = new RegExp(`^:::${blockName}`, "m");
-        const index2 = (_a = src.match(regex)) == null ? void 0 : _a.index;
-        return index2 !== void 0 ? index2 : -1;
+        const index = (_a = src.match(regex)) == null ? void 0 : _a.index;
+        return index !== void 0 ? index : -1;
       },
       tokenize(src, _tokens, lexer) {
         var _a;
@@ -17825,8 +17819,8 @@ function createInlineMarkdownSpec(options) {
       start(src) {
         const startPattern = selfClosing ? new RegExp(`\\[${escapedShortcode}\\s*[^\\]]*\\]`) : new RegExp(`\\[${escapedShortcode}\\s*[^\\]]*\\][\\s\\S]*?\\[\\/${escapedShortcode}\\]`);
         const match = src.match(startPattern);
-        const index2 = match == null ? void 0 : match.index;
-        return index2 !== void 0 ? index2 : -1;
+        const index = match == null ? void 0 : match.index;
+        return index !== void 0 ? index : -1;
       },
       tokenize(src, _tokens, _lexer) {
         const tokenPattern = selfClosing ? new RegExp(`^\\[${escapedShortcode}\\s*([^\\]]*)\\]`) : new RegExp(`^\\[${escapedShortcode}\\s*([^\\]]*)\\]([\\s\\S]*?)\\[\\/${escapedShortcode}\\]`);
@@ -18319,12 +18313,12 @@ function areArrayBuffersEqual(a, b) {
   return a.byteLength === b.byteLength && areTypedArraysEqual(new Uint8Array(a), new Uint8Array(b));
 }
 function areArraysEqual(a, b, state) {
-  let index2 = a.length;
-  if (b.length !== index2) {
+  let index = a.length;
+  if (b.length !== index) {
     return false;
   }
-  while (index2-- > 0) {
-    if (!state.equals(a[index2], b[index2], index2, index2, a, b, state)) {
+  while (index-- > 0) {
+    if (!state.equals(a[index], b[index], index, index, a, b, state)) {
       return false;
     }
   }
@@ -18354,7 +18348,7 @@ function areMapsEqual(a, b, state) {
   const aIterable = a.entries();
   let aResult;
   let bResult;
-  let index2 = 0;
+  let index = 0;
   while (aResult = aIterable.next()) {
     if (aResult.done) {
       break;
@@ -18372,7 +18366,7 @@ function areMapsEqual(a, b, state) {
       }
       const aEntry = aResult.value;
       const bEntry = bResult.value;
-      if (state.equals(aEntry[0], bEntry[0], index2, matchIndex, a, b, state) && state.equals(aEntry[1], bEntry[1], aEntry[0], bEntry[0], a, b, state)) {
+      if (state.equals(aEntry[0], bEntry[0], index, matchIndex, a, b, state) && state.equals(aEntry[1], bEntry[1], aEntry[0], bEntry[0], a, b, state)) {
         hasMatch = matchedIndices[matchIndex] = true;
         break;
       }
@@ -18381,19 +18375,19 @@ function areMapsEqual(a, b, state) {
     if (!hasMatch) {
       return false;
     }
-    index2++;
+    index++;
   }
   return true;
 }
 const areNumbersEqual = sameValueZeroEqual;
 function areObjectsEqual(a, b, state) {
   const properties = keys(a);
-  let index2 = properties.length;
-  if (keys(b).length !== index2) {
+  let index = properties.length;
+  if (keys(b).length !== index) {
     return false;
   }
-  while (index2-- > 0) {
-    if (!isPropertyEqual(a, b, state, properties[index2])) {
+  while (index-- > 0) {
+    if (!isPropertyEqual(a, b, state, properties[index])) {
       return false;
     }
   }
@@ -18401,15 +18395,15 @@ function areObjectsEqual(a, b, state) {
 }
 function areObjectsEqualStrict(a, b, state) {
   const properties = getStrictProperties(a);
-  let index2 = properties.length;
-  if (getStrictProperties(b).length !== index2) {
+  let index = properties.length;
+  if (getStrictProperties(b).length !== index) {
     return false;
   }
   let property;
   let descriptorA;
   let descriptorB;
-  while (index2-- > 0) {
-    property = properties[index2];
+  while (index-- > 0) {
+    property = properties[index];
     if (!isPropertyEqual(a, b, state, property)) {
       return false;
     }
@@ -18463,12 +18457,12 @@ function areSetsEqual(a, b, state) {
   return true;
 }
 function areTypedArraysEqual(a, b) {
-  let index2 = a.byteLength;
-  if (b.byteLength !== index2 || a.byteOffset !== b.byteOffset) {
+  let index = a.byteLength;
+  if (b.byteLength !== index || a.byteOffset !== b.byteOffset) {
     return false;
   }
-  while (index2-- > 0) {
-    if (a[index2] !== b[index2]) {
+  while (index-- > 0) {
+    if (a[index] !== b[index]) {
       return false;
     }
   }
@@ -18723,18 +18717,18 @@ var hasRequiredWithSelector_production;
 function requireWithSelector_production() {
   if (hasRequiredWithSelector_production) return withSelector_production;
   hasRequiredWithSelector_production = 1;
-  var React2 = React__default.default, shim2 = requireShim();
+  var React$1 = React, shim2 = requireShim();
   function is(x, y) {
     return x === y && (0 !== x || 1 / x === 1 / y) || x !== x && y !== y;
   }
-  var objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim2.useSyncExternalStore, useRef = React2.useRef, useEffect = React2.useEffect, useMemo = React2.useMemo, useDebugValue = React2.useDebugValue;
+  var objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim2.useSyncExternalStore, useRef2 = React$1.useRef, useEffect2 = React$1.useEffect, useMemo2 = React$1.useMemo, useDebugValue2 = React$1.useDebugValue;
   withSelector_production.useSyncExternalStoreWithSelector = function(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
-    var instRef = useRef(null);
+    var instRef = useRef2(null);
     if (null === instRef.current) {
       var inst = { hasValue: false, value: null };
       instRef.current = inst;
     } else inst = instRef.current;
-    instRef = useMemo(
+    instRef = useMemo2(
       function() {
         function memoizedSelector(nextSnapshot) {
           if (!hasMemo) {
@@ -18769,14 +18763,14 @@ function requireWithSelector_production() {
       [getSnapshot, getServerSnapshot, selector, isEqual]
     );
     var value = useSyncExternalStore(subscribe, instRef[0], instRef[1]);
-    useEffect(
+    useEffect2(
       function() {
         inst.hasValue = true;
         inst.value = value;
       },
       [value]
     );
-    useDebugValue(value);
+    useDebugValue2(value);
     return value;
   };
   return withSelector_production;
@@ -18800,14 +18794,14 @@ function requireWithSelector_development() {
       return x === y && (0 !== x || 1 / x === 1 / y) || x !== x && y !== y;
     }
     "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-    var React2 = React__default.default, shim2 = requireShim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim2.useSyncExternalStore, useRef = React2.useRef, useEffect = React2.useEffect, useMemo = React2.useMemo, useDebugValue = React2.useDebugValue;
+    var React$1 = React, shim2 = requireShim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim2.useSyncExternalStore, useRef2 = React$1.useRef, useEffect2 = React$1.useEffect, useMemo2 = React$1.useMemo, useDebugValue2 = React$1.useDebugValue;
     withSelector_development.useSyncExternalStoreWithSelector = function(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
-      var instRef = useRef(null);
+      var instRef = useRef2(null);
       if (null === instRef.current) {
         var inst = { hasValue: false, value: null };
         instRef.current = inst;
       } else inst = instRef.current;
-      instRef = useMemo(
+      instRef = useMemo2(
         function() {
           function memoizedSelector(nextSnapshot) {
             if (!hasMemo) {
@@ -18843,14 +18837,14 @@ function requireWithSelector_development() {
         [getSnapshot, getServerSnapshot, selector, isEqual]
       );
       var value = useSyncExternalStore(subscribe, instRef[0], instRef[1]);
-      useEffect(
+      useEffect2(
         function() {
           inst.hasValue = true;
           inst.value = value;
         },
         [value]
       );
-      useDebugValue(value);
+      useDebugValue2(value);
       return value;
     };
     "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
@@ -18886,7 +18880,7 @@ var Portals = ({ contentComponent }) => {
     contentComponent.getSnapshot,
     contentComponent.getServerSnapshot
   );
-  return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: Object.values(renderers) });
+  return /* @__PURE__ */ jsx(Fragment$1, { children: Object.values(renderers) });
 };
 function getInstance() {
   const subscribers = /* @__PURE__ */ new Set();
@@ -18913,7 +18907,7 @@ function getInstance() {
     setRenderer(id, renderer) {
       renderers = {
         ...renderers,
-        [id]: ReactDOM__default.default.createPortal(renderer.reactElement, renderer.element, id)
+        [id]: ReactDOM.createPortal(renderer.reactElement, renderer.element, id)
       };
       subscribers.forEach((subscriber) => subscriber());
     },
@@ -18928,11 +18922,11 @@ function getInstance() {
     }
   };
 }
-var PureEditorContent = class extends React__default.default.Component {
+var PureEditorContent = class extends React.Component {
   constructor(props) {
     var _a;
     super(props);
-    this.editorContentRef = React__default.default.createRef();
+    this.editorContentRef = React.createRef();
     this.initialized = false;
     this.state = {
       hasContentComponentInitialized: Boolean((_a = props.editor) == null ? void 0 : _a.contentComponent)
@@ -19006,26 +19000,26 @@ var PureEditorContent = class extends React__default.default.Component {
   }
   render() {
     const { editor, innerRef, ...rest } = this.props;
-    return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx("div", { ref: mergeRefs(innerRef, this.editorContentRef), ...rest }),
-      (editor == null ? void 0 : editor.contentComponent) && /* @__PURE__ */ jsxRuntime.jsx(Portals, { contentComponent: editor.contentComponent })
+    return /* @__PURE__ */ jsxs(Fragment$1, { children: [
+      /* @__PURE__ */ jsx("div", { ref: mergeRefs(innerRef, this.editorContentRef), ...rest }),
+      (editor == null ? void 0 : editor.contentComponent) && /* @__PURE__ */ jsx(Portals, { contentComponent: editor.contentComponent })
     ] });
   }
 };
-var EditorContentWithKey = React.forwardRef(
+var EditorContentWithKey = forwardRef(
   (props, ref) => {
-    const key = React__default.default.useMemo(() => {
+    const key = React.useMemo(() => {
       return Math.floor(Math.random() * 4294967295).toString();
     }, [props.editor]);
-    return React__default.default.createElement(PureEditorContent, {
+    return React.createElement(PureEditorContent, {
       key,
       innerRef: ref,
       ...props
     });
   }
 );
-var EditorContent = React__default.default.memo(EditorContentWithKey);
-var useIsomorphicLayoutEffect = typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+var EditorContent = React.memo(EditorContentWithKey);
+var useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 var EditorStateManager = class {
   constructor(initialEditor) {
     this.transactionNumber = 0;
@@ -19085,7 +19079,7 @@ var EditorStateManager = class {
 };
 function useEditorState(options) {
   var _a;
-  const [editorStateManager] = React.useState(() => new EditorStateManager(options.editor));
+  const [editorStateManager] = useState(() => new EditorStateManager(options.editor));
   const selectedState = withSelectorExports.useSyncExternalStoreWithSelector(
     editorStateManager.subscribe,
     editorStateManager.getSnapshot,
@@ -19096,7 +19090,7 @@ function useEditorState(options) {
   useIsomorphicLayoutEffect(() => {
     return editorStateManager.watch(options.editor);
   }, [options.editor, editorStateManager]);
-  React.useDebugValue(selectedState);
+  useDebugValue(selectedState);
   return selectedState;
 }
 var isDev = process.env.NODE_ENV !== "production";
@@ -19249,9 +19243,9 @@ var EditorInstanceManager = class _EditorInstanceManager {
         if (a.extensions.length !== b.extensions.length) {
           return false;
         }
-        return a.extensions.every((extension, index2) => {
+        return a.extensions.every((extension, index) => {
           var _a;
-          if (extension !== ((_a = b.extensions) == null ? void 0 : _a[index2])) {
+          if (extension !== ((_a = b.extensions) == null ? void 0 : _a[index])) {
             return false;
           }
           return true;
@@ -19297,7 +19291,7 @@ var EditorInstanceManager = class _EditorInstanceManager {
         this.previousDeps = deps;
         return;
       }
-      const depsAreEqual = this.previousDeps.length === deps.length && this.previousDeps.every((dep, index2) => dep === deps[index2]);
+      const depsAreEqual = this.previousDeps.length === deps.length && this.previousDeps.every((dep, index) => dep === deps[index]);
       if (depsAreEqual) {
         return;
       }
@@ -19333,16 +19327,16 @@ var EditorInstanceManager = class _EditorInstanceManager {
   }
 };
 function useEditor(options = {}, deps = []) {
-  const mostRecentOptions = React.useRef(options);
+  const mostRecentOptions = useRef(options);
   mostRecentOptions.current = options;
-  const [instanceManager] = React.useState(() => new EditorInstanceManager(mostRecentOptions));
+  const [instanceManager] = useState(() => new EditorInstanceManager(mostRecentOptions));
   const editor = shimExports.useSyncExternalStore(
     instanceManager.subscribe,
     instanceManager.getEditor,
     instanceManager.getServerSnapshot
   );
-  React.useDebugValue(editor);
-  React.useEffect(instanceManager.onRender(deps));
+  useDebugValue(editor);
+  useEffect(instanceManager.onRender(deps));
   useEditorState({
     editor,
     selector: ({ transactionNumber }) => {
@@ -19357,24 +19351,24 @@ function useEditor(options = {}, deps = []) {
   });
   return editor;
 }
-var EditorContext = React.createContext({
+var EditorContext = createContext({
   editor: null
 });
 EditorContext.Consumer;
-var ReactNodeViewContext = React.createContext({
+var ReactNodeViewContext = createContext({
   onDragStart: () => {
   },
   nodeViewContentChildren: void 0,
   nodeViewContentRef: () => {
   }
 });
-var useReactNodeView = () => React.useContext(ReactNodeViewContext);
-var NodeViewWrapper = React__default.default.forwardRef((props, ref) => {
+var useReactNodeView = () => useContext(ReactNodeViewContext);
+var NodeViewWrapper = React.forwardRef((props, ref) => {
   const { onDragStart } = useReactNodeView();
   const Tag = props.as || "div";
   return (
     // @ts-ignore
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       Tag,
       {
         ...props,
@@ -19389,24 +19383,24 @@ var NodeViewWrapper = React__default.default.forwardRef((props, ref) => {
     )
   );
 });
-function isClassComponent(Component) {
-  return !!(typeof Component === "function" && Component.prototype && Component.prototype.isReactComponent);
+function isClassComponent(Component2) {
+  return !!(typeof Component2 === "function" && Component2.prototype && Component2.prototype.isReactComponent);
 }
-function isForwardRefComponent(Component) {
-  return !!(typeof Component === "object" && Component.$$typeof && (Component.$$typeof.toString() === "Symbol(react.forward_ref)" || Component.$$typeof.description === "react.forward_ref"));
+function isForwardRefComponent(Component2) {
+  return !!(typeof Component2 === "object" && Component2.$$typeof && (Component2.$$typeof.toString() === "Symbol(react.forward_ref)" || Component2.$$typeof.description === "react.forward_ref"));
 }
-function isMemoComponent(Component) {
-  return !!(typeof Component === "object" && Component.$$typeof && (Component.$$typeof.toString() === "Symbol(react.memo)" || Component.$$typeof.description === "react.memo"));
+function isMemoComponent(Component2) {
+  return !!(typeof Component2 === "object" && Component2.$$typeof && (Component2.$$typeof.toString() === "Symbol(react.memo)" || Component2.$$typeof.description === "react.memo"));
 }
-function canReceiveRef(Component) {
-  if (isClassComponent(Component)) {
+function canReceiveRef(Component2) {
+  if (isClassComponent(Component2)) {
     return true;
   }
-  if (isForwardRefComponent(Component)) {
+  if (isForwardRefComponent(Component2)) {
     return true;
   }
-  if (isMemoComponent(Component)) {
-    const wrappedComponent = Component.type;
+  if (isMemoComponent(Component2)) {
+    const wrappedComponent = Component2.type;
     if (wrappedComponent) {
       return isClassComponent(wrappedComponent) || isForwardRefComponent(wrappedComponent);
     }
@@ -19415,8 +19409,8 @@ function canReceiveRef(Component) {
 }
 function isReact19Plus() {
   try {
-    if (React.version) {
-      const majorVersion = parseInt(React.version.split(".")[0], 10);
+    if (version) {
+      const majorVersion = parseInt(version.split(".")[0], 10);
       return majorVersion >= 19;
     }
   } catch {
@@ -19440,7 +19434,7 @@ var ReactRenderer = class {
       this.element.classList.add(...className.split(" "));
     }
     if (this.editor.isInitialized) {
-      ReactDOM.flushSync(() => {
+      flushSync(() => {
         this.render();
       });
     } else {
@@ -19460,11 +19454,11 @@ var ReactRenderer = class {
     if (this.destroyed) {
       return;
     }
-    const Component = this.component;
+    const Component2 = this.component;
     const props = this.props;
     const editor = this.editor;
     const isReact19 = isReact19Plus();
-    const componentCanReceiveRef = canReceiveRef(Component);
+    const componentCanReceiveRef = canReceiveRef(Component2);
     const elementProps = { ...props };
     if (elementProps.ref && !(isReact19 || componentCanReceiveRef)) {
       delete elementProps.ref;
@@ -19474,7 +19468,7 @@ var ReactRenderer = class {
         this.ref = ref;
       };
     }
-    this.reactElement = /* @__PURE__ */ jsxRuntime.jsx(Component, { ...elementProps });
+    this.reactElement = /* @__PURE__ */ jsx(Component2, { ...elementProps });
     (_a = editor == null ? void 0 : editor.contentComponent) == null ? void 0 : _a.setRenderer(this.id, this);
   }
   /**
@@ -19514,7 +19508,7 @@ var ReactRenderer = class {
     });
   }
 };
-React__default.default.createContext({
+React.createContext({
   markViewContentRef: () => {
   }
 });
@@ -19577,7 +19571,7 @@ var ReactNodeView = class extends NodeView {
       getPos: () => this.getPos(),
       updateAttributes: (attributes = {}) => this.updateAttributes(attributes),
       deleteNode: () => this.deleteNode(),
-      ref: React.createRef()
+      ref: createRef()
     };
     if (!this.component.displayName) {
       const capitalizeFirstChar = (string) => {
@@ -19595,9 +19589,9 @@ var ReactNodeView = class extends NodeView {
       }
     };
     const context = { onDragStart, nodeViewContentRef };
-    const Component = this.component;
-    const ReactNodeViewProvider = React.memo((componentProps) => {
-      return /* @__PURE__ */ jsxRuntime.jsx(ReactNodeViewContext.Provider, { value: context, children: React.createElement(Component, componentProps) });
+    const Component2 = this.component;
+    const ReactNodeViewProvider = memo((componentProps) => {
+      return /* @__PURE__ */ jsx(ReactNodeViewContext.Provider, { value: context, children: createElement(Component2, componentProps) });
     });
     ReactNodeViewProvider.displayName = "ReactNodeView";
     let as = this.node.isInline ? "span" : "div";
@@ -19763,26 +19757,26 @@ function ReactNodeViewRenderer(component, options) {
     return new ReactNodeView(component, props, options);
   };
 }
-var TiptapContext = React.createContext({
+var TiptapContext = createContext({
   get editor() {
     throw new Error("useTiptap must be used within a <Tiptap> provider");
   }
 });
 TiptapContext.displayName = "TiptapContext";
-var useTiptap = () => React.useContext(TiptapContext);
+var useTiptap = () => useContext(TiptapContext);
 function TiptapWrapper({ editor, instance, children }) {
   const resolvedEditor = editor != null ? editor : instance;
   if (!resolvedEditor) {
     throw new Error("Tiptap: An editor instance is required. Pass a non-null `editor` prop.");
   }
-  const tiptapContextValue = React.useMemo(() => ({ editor: resolvedEditor }), [resolvedEditor]);
-  const legacyContextValue = React.useMemo(() => ({ editor: resolvedEditor }), [resolvedEditor]);
-  return /* @__PURE__ */ jsxRuntime.jsx(EditorContext.Provider, { value: legacyContextValue, children: /* @__PURE__ */ jsxRuntime.jsx(TiptapContext.Provider, { value: tiptapContextValue, children }) });
+  const tiptapContextValue = useMemo(() => ({ editor: resolvedEditor }), [resolvedEditor]);
+  const legacyContextValue = useMemo(() => ({ editor: resolvedEditor }), [resolvedEditor]);
+  return /* @__PURE__ */ jsx(EditorContext.Provider, { value: legacyContextValue, children: /* @__PURE__ */ jsx(TiptapContext.Provider, { value: tiptapContextValue, children }) });
 }
 TiptapWrapper.displayName = "Tiptap";
 function TiptapContent({ ...rest }) {
   const { editor } = useTiptap();
-  return /* @__PURE__ */ jsxRuntime.jsx(EditorContent, { editor, ...rest });
+  return /* @__PURE__ */ jsx(EditorContent, { editor, ...rest });
 }
 TiptapContent.displayName = "Tiptap.Content";
 Object.assign(TiptapWrapper, {
@@ -19792,7 +19786,7 @@ Object.assign(TiptapWrapper, {
    */
   Content: TiptapContent
 });
-const TiptapInputStyles = styled__default.default.div`
+const TiptapInputStyles = styled.div`
   .editor-toolbar {
     margin-bottom: 0.25rem;
     padding-bottom: 0.25rem;
@@ -19920,6 +19914,31 @@ const TiptapInputStyles = styled__default.default.div`
 
   .ProseMirror s {
     text-decoration: line-through;
+  }
+
+  /* --- PDF attachments --- */
+  .ProseMirror a[data-type="pdf-attachment"] {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.75rem 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid ${({ theme }) => theme.colors.neutral300};
+    border-radius: 0.5rem;
+    background: ${({ theme }) => theme.colors.neutral100};
+    overflow-wrap: anywhere;
+  }
+
+  .ProseMirror a[data-type="pdf-attachment"]::before {
+    content: 'PDF';
+    flex: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.danger600};
+  }
+
+  .ProseMirror a[data-type="pdf-attachment"].ProseMirror-selectednode {
+    outline: 2px solid #4945ff;
   }
 
   /* --- Images --- */
@@ -20063,15 +20082,15 @@ const TiptapInputStyles = styled__default.default.div`
     font-weight: bold;
   }
 `;
-const BaseTiptapInput = React.forwardRef(
+const BaseTiptapInput = forwardRef(
   ({ hint, disabled = false, labelAction, label, name, required = false, editor, field, children, noPresetConfigured }, forwardedRef) => {
-    const { formatMessage } = reactIntl.useIntl();
+    const { formatMessage } = useIntl();
     const borderColor = field.error ? "danger600" : "neutral200";
     const background = disabled ? "neutral200" : "neutral100";
-    return /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Field.Root, { name, id: name, hint, error: field.error, required, children: [
-      /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Label, { action: labelAction, children: label }),
-      /* @__PURE__ */ jsxRuntime.jsx(TiptapInputStyles, { children: /* @__PURE__ */ jsxRuntime.jsxs(
-        designSystem.Box,
+    return /* @__PURE__ */ jsxs(Field.Root, { name, id: name, hint, error: field.error, required, children: [
+      /* @__PURE__ */ jsx(Field.Label, { action: labelAction, children: label }),
+      /* @__PURE__ */ jsx(TiptapInputStyles, { children: /* @__PURE__ */ jsxs(
+        Box,
         {
           className: `tiptap-editor-wrapper ${field.error ? "has-error" : ""} ${disabled ? "is-disabled" : ""}`,
           hasRadius: true,
@@ -20082,13 +20101,13 @@ const BaseTiptapInput = React.forwardRef(
           paddingLeft: 0,
           paddingRight: 0,
           children: [
-            noPresetConfigured && /* @__PURE__ */ jsxRuntime.jsx(designSystem.Box, { paddingLeft: 2, paddingRight: 2, paddingTop: 2, children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Status, { variant: "secondary", children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { variant: "pi", children: formatMessage({
+            noPresetConfigured && /* @__PURE__ */ jsx(Box, { paddingLeft: 2, paddingRight: 2, paddingTop: 2, children: /* @__PURE__ */ jsx(Status, { variant: "secondary", children: /* @__PURE__ */ jsx(Typography, { variant: "pi", children: formatMessage({
               id: "tiptap-editor.noPreset.message",
               defaultMessage: "No editor preset configured — showing minimal editor"
             }) }) }) }),
-            /* @__PURE__ */ jsxRuntime.jsx(designSystem.Box, { className: "editor-toolbar", paddingLeft: 2, paddingRight: 2, paddingBottom: 2, children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Flex, { gap: 1, wrap: "wrap", children }) }),
-            /* @__PURE__ */ jsxRuntime.jsx(
-              designSystem.Box,
+            /* @__PURE__ */ jsx(Box, { className: "editor-toolbar", paddingLeft: 2, paddingRight: 2, paddingBottom: 2, children: /* @__PURE__ */ jsx(Flex, { gap: 1, wrap: "wrap", children }) }),
+            /* @__PURE__ */ jsx(
+              Box,
               {
                 className: "editor-content",
                 background: "neutral0",
@@ -20096,25 +20115,25 @@ const BaseTiptapInput = React.forwardRef(
                 paddingBottom: 2,
                 paddingLeft: 2,
                 paddingRight: 2,
-                children: /* @__PURE__ */ jsxRuntime.jsx(EditorContent, { editor, disabled, ref: forwardedRef })
+                children: /* @__PURE__ */ jsx(EditorContent, { editor, disabled, ref: forwardedRef })
               }
             )
           ]
         }
       ) }),
-      /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Hint, {}),
-      /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Error, {})
+      /* @__PURE__ */ jsx(Field.Hint, {}),
+      /* @__PURE__ */ jsx(Field.Error, {})
     ] });
   }
 );
 const ErrorFallback = ({ onRetry }) => {
-  const { formatMessage } = reactIntl.useIntl();
-  return /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Box, { padding: 4, background: "danger100", hasRadius: true, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { variant: "omega", textColor: "danger700", children: formatMessage({ id: "tiptap-editor.error.message", defaultMessage: "The editor encountered an error and could not render." }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(designSystem.Box, { marginTop: 2, children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, { variant: "secondary", size: "S", onClick: onRetry, children: formatMessage({ id: "tiptap-editor.error.retry", defaultMessage: "Retry" }) }) })
+  const { formatMessage } = useIntl();
+  return /* @__PURE__ */ jsxs(Box, { padding: 4, background: "danger100", hasRadius: true, children: [
+    /* @__PURE__ */ jsx(Typography, { variant: "omega", textColor: "danger700", children: formatMessage({ id: "tiptap-editor.error.message", defaultMessage: "The editor encountered an error and could not render." }) }),
+    /* @__PURE__ */ jsx(Box, { marginTop: 2, children: /* @__PURE__ */ jsx(Button, { variant: "secondary", size: "S", onClick: onRetry, children: formatMessage({ id: "tiptap-editor.error.retry", defaultMessage: "Retry" }) }) })
   ] });
 };
-class EditorErrorBoundary extends React.Component {
+class EditorErrorBoundary extends Component {
   constructor() {
     super(...arguments);
     __publicField(this, "state", { hasError: false, error: null });
@@ -20130,7 +20149,7 @@ class EditorErrorBoundary extends React.Component {
   }
   render() {
     if (this.state.hasError) {
-      return /* @__PURE__ */ jsxRuntime.jsx(ErrorFallback, { onRetry: this.handleRetry });
+      return /* @__PURE__ */ jsx(ErrorFallback, { onRetry: this.handleRetry });
     }
     return this.props.children;
   }
@@ -20210,7 +20229,7 @@ function parseJSONContent(value, defaultValue) {
   }
 }
 function useTiptapEditor(name, defaultValue = "", extensions = []) {
-  const field = admin.useField(name);
+  const field = useField(name);
   const editor = useEditor({
     extensions,
     content: parseJSONContent(field.value, defaultValue),
@@ -20222,7 +20241,7 @@ function useTiptapEditor(name, defaultValue = "", extensions = []) {
   return { editor, field };
 }
 function Spacer({ width }) {
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { style: { width: width + "px" } });
+  return /* @__PURE__ */ jsx("div", { style: { width: width + "px" } });
 }
 function ToolbarButton({
   onClick,
@@ -20233,8 +20252,8 @@ function ToolbarButton({
   marginLeft,
   hidden
 }) {
-  return /* @__PURE__ */ jsxRuntime.jsx(designSystem.Tooltip, { description: tooltip, children: /* @__PURE__ */ jsxRuntime.jsx(
-    designSystem.Button,
+  return /* @__PURE__ */ jsx(Tooltip, { description: tooltip, children: /* @__PURE__ */ jsx(
+    Button,
     {
       onClick,
       variant: "tertiary",
@@ -20273,7 +20292,7 @@ const OrderedSublistShortcuts = Extension.create({
   }
 });
 function useStarterKit(editor, props = { disabled: false }) {
-  const { formatMessage } = reactIntl.useIntl();
+  const { formatMessage } = useIntl();
   const editorState = useEditorState({
     editor,
     selector: (ctx) => {
@@ -20356,31 +20375,31 @@ function useStarterKit(editor, props = { disabled: false }) {
   const outdentListItem = () => editor?.chain().focus().liftListItem("listItem").run();
   const toggleBlockquote = () => editor?.chain().focus().toggleBlockquote().run();
   return {
-    boldButton: /* @__PURE__ */ jsxRuntime.jsx(
+    boldButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleBold,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.Bold, {}),
+        icon: /* @__PURE__ */ jsx(Bold$1, {}),
         active: editorState?.isBold ?? false,
         disabled: props.disabled || !editor || !editorState?.canBold,
         tooltip: formatMessage({ id: "tiptap-editor.toolbar.bold", defaultMessage: "Bold" })
       }
     ),
-    italicButton: /* @__PURE__ */ jsxRuntime.jsx(
+    italicButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleItalic,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.Italic, {}),
+        icon: /* @__PURE__ */ jsx(Italic$1, {}),
         active: editorState?.isItalic ?? false,
         disabled: props.disabled || !editor || !editorState?.canItalic,
         tooltip: formatMessage({ id: "tiptap-editor.toolbar.italic", defaultMessage: "Italic" })
       }
     ),
-    underlineButton: /* @__PURE__ */ jsxRuntime.jsx(
+    underlineButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleUnderline,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.Underline, {}),
+        icon: /* @__PURE__ */ jsx(Underline$1, {}),
         active: editorState?.isUnderline ?? false,
         disabled: props.disabled || !editor || !editorState?.canUnderline,
         tooltip: formatMessage({
@@ -20389,11 +20408,11 @@ function useStarterKit(editor, props = { disabled: false }) {
         })
       }
     ),
-    strikeButton: /* @__PURE__ */ jsxRuntime.jsx(
+    strikeButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleStrike,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.StrikeThrough, {}),
+        icon: /* @__PURE__ */ jsx(StrikeThrough, {}),
         active: editorState?.isStrike ?? false,
         disabled: props.disabled || !editor || !editorState?.canStrike,
         tooltip: formatMessage({
@@ -20402,11 +20421,11 @@ function useStarterKit(editor, props = { disabled: false }) {
         })
       }
     ),
-    bulletButton: /* @__PURE__ */ jsxRuntime.jsx(
+    bulletButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleBulletList,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.BulletList, {}),
+        icon: /* @__PURE__ */ jsx(BulletList$1, {}),
         active: editorState?.isBulletList ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleBulletList,
         tooltip: formatMessage({
@@ -20415,11 +20434,11 @@ function useStarterKit(editor, props = { disabled: false }) {
         })
       }
     ),
-    orderedButton: /* @__PURE__ */ jsxRuntime.jsx(
+    orderedButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleOrderedList,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.NumberList, {}),
+        icon: /* @__PURE__ */ jsx(NumberList, {}),
         active: (editorState?.isOrderedList && !editorState?.isAlphabeticList) ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleOrderedList,
         tooltip: formatMessage({
@@ -20428,11 +20447,11 @@ function useStarterKit(editor, props = { disabled: false }) {
         })
       }
     ),
-    alphabeticButton: /* @__PURE__ */ jsxRuntime.jsx(
+    alphabeticButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleAlphabeticList,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "a. b. c." }),
+        icon: /* @__PURE__ */ jsx(Fragment$1, { children: "a. b. c." }),
         active: editorState?.isAlphabeticList ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleOrderedList,
         tooltip: formatMessage({
@@ -20441,11 +20460,11 @@ function useStarterKit(editor, props = { disabled: false }) {
         })
       }
     ),
-    indentListButton: /* @__PURE__ */ jsxRuntime.jsx(
+    indentListButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: indentListItem,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "→" }),
+        icon: /* @__PURE__ */ jsx(Fragment$1, { children: "→" }),
         disabled: props.disabled || !editor || !editorState?.canIndentListItem,
         tooltip: formatMessage({
           id: "tiptap-editor.toolbar.indentListItem",
@@ -20453,11 +20472,11 @@ function useStarterKit(editor, props = { disabled: false }) {
         })
       }
     ),
-    outdentListButton: /* @__PURE__ */ jsxRuntime.jsx(
+    outdentListButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: outdentListItem,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "←" }),
+        icon: /* @__PURE__ */ jsx(Fragment$1, { children: "←" }),
         disabled: props.disabled || !editor || !editorState?.canOutdentListItem,
         tooltip: formatMessage({
           id: "tiptap-editor.toolbar.outdentListItem",
@@ -20465,11 +20484,11 @@ function useStarterKit(editor, props = { disabled: false }) {
         })
       }
     ),
-    codeButton: /* @__PURE__ */ jsxRuntime.jsx(
+    codeButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleCode,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.Code, {}),
+        icon: /* @__PURE__ */ jsx(Code$1, {}),
         active: editorState?.isCode ?? false,
         disabled: props.disabled || !editor || !editorState?.canCode,
         tooltip: formatMessage({
@@ -20478,11 +20497,11 @@ function useStarterKit(editor, props = { disabled: false }) {
         })
       }
     ),
-    blockquoteButton: /* @__PURE__ */ jsxRuntime.jsx(
+    blockquoteButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleBlockquote,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.Quotes, {}),
+        icon: /* @__PURE__ */ jsx(Quotes, {}),
         active: editorState?.isBlockquote ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleBlockquote,
         tooltip: formatMessage({ id: "tiptap-editor.toolbar.quote", defaultMessage: "Quote" })
@@ -20498,9 +20517,9 @@ const LinkDialog = ({
   onSave,
   onRemove
 }) => {
-  const { formatMessage } = reactIntl.useIntl();
-  const [value, setValue] = React__default.default.useState(url || "");
-  React__default.default.useEffect(() => {
+  const { formatMessage } = useIntl();
+  const [value, setValue] = React.useState(url || "");
+  React.useEffect(() => {
     if (open) {
       setValue(url || "");
     }
@@ -20509,19 +20528,19 @@ const LinkDialog = ({
     onSave({ url: value.trim() });
   };
   const isSaveDisabled = mode === "add" ? value.trim() === "" : false;
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    designSystem.Dialog.Root,
+  return /* @__PURE__ */ jsx(
+    Dialog.Root,
     {
       open,
       onOpenChange: (v) => {
         if (!v) onClose();
       },
-      children: open && /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Content, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Header, { children: mode === "add" ? formatMessage({ id: "tiptap-editor.link.addLink", defaultMessage: "Add link" }) : formatMessage({ id: "tiptap-editor.link.editLink", defaultMessage: "Edit link" }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Body, { children: /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Field.Root, { width: "100%", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Label, { children: formatMessage({ id: "tiptap-editor.link.urlLabel", defaultMessage: "URL" }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(
-            designSystem.TextInput,
+      children: open && /* @__PURE__ */ jsxs(Dialog.Content, { children: [
+        /* @__PURE__ */ jsx(Dialog.Header, { children: mode === "add" ? formatMessage({ id: "tiptap-editor.link.addLink", defaultMessage: "Add link" }) : formatMessage({ id: "tiptap-editor.link.editLink", defaultMessage: "Edit link" }) }),
+        /* @__PURE__ */ jsx(Dialog.Body, { children: /* @__PURE__ */ jsxs(Field.Root, { width: "100%", children: [
+          /* @__PURE__ */ jsx(Field.Label, { children: formatMessage({ id: "tiptap-editor.link.urlLabel", defaultMessage: "URL" }) }),
+          /* @__PURE__ */ jsx(
+            TextInput,
             {
               name: "link-url",
               placeholder: formatMessage({ id: "tiptap-editor.link.urlPlaceholder", defaultMessage: "https://example.com" }),
@@ -20530,11 +20549,11 @@ const LinkDialog = ({
             }
           )
         ] }) }),
-        /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Footer, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Cancel, { children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, { variant: "tertiary", fullWidth: true, onClick: onClose, children: formatMessage({ id: "tiptap-editor.link.cancel", defaultMessage: "Cancel" }) }) }),
-          mode === "edit" && /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, { variant: "danger-light", fullWidth: true, onClick: onRemove, children: formatMessage({ id: "tiptap-editor.link.removeLink", defaultMessage: "Remove link" }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Action, { children: /* @__PURE__ */ jsxRuntime.jsx(
-            designSystem.Button,
+        /* @__PURE__ */ jsxs(Dialog.Footer, { children: [
+          /* @__PURE__ */ jsx(Dialog.Cancel, { children: /* @__PURE__ */ jsx(Button, { variant: "tertiary", fullWidth: true, onClick: onClose, children: formatMessage({ id: "tiptap-editor.link.cancel", defaultMessage: "Cancel" }) }) }),
+          mode === "edit" && /* @__PURE__ */ jsx(Button, { variant: "danger-light", fullWidth: true, onClick: onRemove, children: formatMessage({ id: "tiptap-editor.link.removeLink", defaultMessage: "Remove link" }) }),
+          /* @__PURE__ */ jsx(Dialog.Action, { children: /* @__PURE__ */ jsx(
+            Button,
             {
               fullWidth: true,
               variant: "success-light",
@@ -20549,7 +20568,7 @@ const LinkDialog = ({
   );
 };
 function useLink(editor, props = { disabled: false }) {
-  const { formatMessage } = reactIntl.useIntl();
+  const { formatMessage } = useIntl();
   const editorState = useEditorState({
     editor,
     selector: (ctx) => {
@@ -20562,10 +20581,10 @@ function useLink(editor, props = { disabled: false }) {
       };
     }
   });
-  const [showLinkDialog, setShowLinkDialog] = React.useState(false);
-  const [currentLinkUrl, setCurrentLinkUrl] = React.useState("");
-  const [linkDialogMode, setLinkDialogMode] = React.useState("add");
-  const selectionRef = React.useRef(null);
+  const [showLinkDialog, setShowLinkDialog] = useState(false);
+  const [currentLinkUrl, setCurrentLinkUrl] = useState("");
+  const [linkDialogMode, setLinkDialogMode] = useState("add");
+  const selectionRef = useRef(null);
   const openAddLinkDialog = () => {
     if (!editor) return;
     const { from: from2, to } = editor.state.selection;
@@ -20622,17 +20641,17 @@ function useLink(editor, props = { disabled: false }) {
     setShowLinkDialog(false);
   };
   return {
-    linkButton: /* @__PURE__ */ jsxRuntime.jsx(
+    linkButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleLink,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.Link, {}),
+        icon: /* @__PURE__ */ jsx(Link$1, {}),
         active: editorState?.isLink ?? false,
         disabled: props.disabled || !editor || !editorState?.canSetLink,
         tooltip: editorState?.isLink ? formatMessage({ id: "tiptap-editor.toolbar.editOrRemoveLink", defaultMessage: "Edit or remove link" }) : formatMessage({ id: "tiptap-editor.toolbar.addLink", defaultMessage: "Add link" })
       }
     ),
-    linkDialog: /* @__PURE__ */ jsxRuntime.jsx(
+    linkDialog: /* @__PURE__ */ jsx(
       LinkDialog,
       {
         open: showLinkDialog,
@@ -20738,7 +20757,7 @@ const BaseHeadingWithSEOTag = index_default$7.extend({
 });
 BaseHeadingWithSEOTag.configure({ levels: [1, 2, 3, 4, 5, 6] });
 function useHeading(editor, props = { disabled: false }) {
-  const { formatMessage } = reactIntl.useIntl();
+  const { formatMessage } = useIntl();
   const levels = props.levels ?? [1, 2, 3, 4, 5, 6];
   const editorState = useEditorState({
     editor,
@@ -20773,8 +20792,8 @@ function useHeading(editor, props = { disabled: false }) {
     editor.chain().focus().updateAttributes("heading", { tag: value }).run();
   };
   return {
-    headingSelect: /* @__PURE__ */ jsxRuntime.jsxs(
-      designSystem.SingleSelect,
+    headingSelect: /* @__PURE__ */ jsxs(
+      SingleSelect,
       {
         placeholder: formatMessage({ id: "tiptap-editor.heading.style", defaultMessage: "Style" }),
         "aria-label": formatMessage({ id: "tiptap-editor.heading.textStyle", defaultMessage: "Text style" }),
@@ -20783,13 +20802,13 @@ function useHeading(editor, props = { disabled: false }) {
         disabled: !editor || props.disabled,
         size: "S",
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: "p", children: formatMessage({ id: "tiptap-editor.heading.paragraph", defaultMessage: "Paragraph" }) }),
-          levels.map((level) => /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: `h${level}`, children: formatMessage({ id: "tiptap-editor.heading.heading", defaultMessage: "Heading {level}" }, { level }) }, `h${level}`))
+          /* @__PURE__ */ jsx(SingleSelectOption, { value: "p", children: formatMessage({ id: "tiptap-editor.heading.paragraph", defaultMessage: "Paragraph" }) }),
+          levels.map((level) => /* @__PURE__ */ jsx(SingleSelectOption, { value: `h${level}`, children: formatMessage({ id: "tiptap-editor.heading.heading", defaultMessage: "Heading {level}" }, { level }) }, `h${level}`))
         ]
       }
     ),
-    headingTagSelect: /* @__PURE__ */ jsxRuntime.jsxs(
-      designSystem.SingleSelect,
+    headingTagSelect: /* @__PURE__ */ jsxs(
+      SingleSelect,
       {
         placeholder: formatMessage({ id: "tiptap-editor.heading.seoTag", defaultMessage: "SEO Tag" }),
         "aria-label": formatMessage({ id: "tiptap-editor.heading.seoTagAriaLabel", defaultMessage: "Heading's HTML tag for SEO purposes" }),
@@ -20798,12 +20817,12 @@ function useHeading(editor, props = { disabled: false }) {
         disabled: !editor || props.disabled || !editorState?.headingLevel,
         size: "S",
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: "h1", children: "h1" }),
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: "h2", children: "h2" }),
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: "h3", children: "h3" }),
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: "h4", children: "h4" }),
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: "h5", children: "h5" }),
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: "h6", children: "h6" })
+          /* @__PURE__ */ jsx(SingleSelectOption, { value: "h1", children: "h1" }),
+          /* @__PURE__ */ jsx(SingleSelectOption, { value: "h2", children: "h2" }),
+          /* @__PURE__ */ jsx(SingleSelectOption, { value: "h3", children: "h3" }),
+          /* @__PURE__ */ jsx(SingleSelectOption, { value: "h4", children: "h4" }),
+          /* @__PURE__ */ jsx(SingleSelectOption, { value: "h5", children: "h5" }),
+          /* @__PURE__ */ jsx(SingleSelectOption, { value: "h6", children: "h6" })
         ]
       }
     )
@@ -20958,25 +20977,25 @@ var Image = Node3.create({
   }
 });
 var index_default$6 = Image;
-function MediaLibraryWrapper({ open, onClose, onSelectAssets }) {
+function MediaLibraryWrapper({ open, onClose, onSelectAssets, allowedTypes = ["images"] }) {
   if (!open) return null;
-  const MediaLibraryDialogComp = index.getMediaLibraryComponent();
+  const MediaLibraryDialogComp = getMediaLibraryComponent();
   if (!MediaLibraryDialogComp) {
     onClose();
     return null;
   }
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(
     MediaLibraryDialogComp,
     {
       onClose,
       onSelectAssets,
-      allowedTypes: ["images"],
+      allowedTypes,
       multiple: false
     }
   );
 }
 function TextAlignLeft(props) {
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(
     "svg",
     {
       width: "16",
@@ -20985,7 +21004,7 @@ function TextAlignLeft(props) {
       fill: "currentColor",
       xmlns: "http://www.w3.org/2000/svg",
       ...props,
-      children: /* @__PURE__ */ jsxRuntime.jsx(
+      children: /* @__PURE__ */ jsx(
         "path",
         {
           d: "M3 10H16M3 14H21M3 18H16M3 6H21",
@@ -20999,7 +21018,7 @@ function TextAlignLeft(props) {
   );
 }
 function TextAlignCenter(props) {
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(
     "svg",
     {
       width: "16",
@@ -21008,7 +21027,7 @@ function TextAlignCenter(props) {
       fill: "currentColor",
       xmlns: "http://www.w3.org/2000/svg",
       ...props,
-      children: /* @__PURE__ */ jsxRuntime.jsx(
+      children: /* @__PURE__ */ jsx(
         "path",
         {
           d: "M3 6H21M3 14H21M17 10H7M17 18H7",
@@ -21022,7 +21041,7 @@ function TextAlignCenter(props) {
   );
 }
 function TextAlignRight(props) {
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(
     "svg",
     {
       width: "16",
@@ -21031,7 +21050,7 @@ function TextAlignRight(props) {
       fill: "currentColor",
       xmlns: "http://www.w3.org/2000/svg",
       ...props,
-      children: /* @__PURE__ */ jsxRuntime.jsx(
+      children: /* @__PURE__ */ jsx(
         "path",
         {
           d: "M8 10H21M3 14H21M8 18H21M3 6H21",
@@ -21045,12 +21064,12 @@ function TextAlignRight(props) {
   );
 }
 function ImageNodeView({ node, updateAttributes: updateAttributes2, deleteNode: deleteNode2, selected, extension }) {
-  const { formatMessage } = reactIntl.useIntl();
-  const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
-  const [altText, setAltText] = React.useState(node.attrs.alt ?? "");
-  const imgRef = React.useRef(null);
-  const isResizingRef = React.useRef(false);
-  const resizeCleanupRef = React.useRef(null);
+  const { formatMessage } = useIntl();
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [altText, setAltText] = useState(node.attrs.alt ?? "");
+  const imgRef = useRef(null);
+  const isResizingRef = useRef(false);
+  const resizeCleanupRef = useRef(null);
   const rawResize = extension.options.resize;
   const resizeEnabled = typeof rawResize === "object" && !!rawResize ? rawResize.enabled : !!rawResize;
   const resizeOpts = resizeEnabled && typeof rawResize === "object" ? rawResize : void 0;
@@ -21059,24 +21078,24 @@ function ImageNodeView({ node, updateAttributes: updateAttributes2, deleteNode: 
   const minHeight = resizeOpts?.minHeight ?? 50;
   const currentWidth = node.attrs.width;
   const currentHeight = node.attrs.height;
-  const [widthInput, setWidthInput] = React.useState(currentWidth ? String(currentWidth) : "");
-  const [heightInput, setHeightInput] = React.useState(currentHeight ? String(currentHeight) : "");
-  React.useEffect(() => {
+  const [widthInput, setWidthInput] = useState(currentWidth ? String(currentWidth) : "");
+  const [heightInput, setHeightInput] = useState(currentHeight ? String(currentHeight) : "");
+  useEffect(() => {
     setAltText(node.attrs.alt ?? "");
   }, [node.attrs.alt]);
-  React.useEffect(() => {
+  useEffect(() => {
     setWidthInput(node.attrs.width ? String(node.attrs.width) : "");
   }, [node.attrs.width]);
-  React.useEffect(() => {
+  useEffect(() => {
     setHeightInput(node.attrs.height ? String(node.attrs.height) : "");
   }, [node.attrs.height]);
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isPopoverOpen) return;
     const handleScroll = () => setIsPopoverOpen(false);
     document.addEventListener("scroll", handleScroll, true);
     return () => document.removeEventListener("scroll", handleScroll, true);
   }, [isPopoverOpen]);
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       resizeCleanupRef.current?.();
     };
@@ -21136,7 +21155,7 @@ function ImageNodeView({ node, updateAttributes: updateAttributes2, deleteNode: 
       setHeightInput(node.attrs.height ? String(node.attrs.height) : "");
     }
   }
-  const handleResizeStart = React.useCallback(
+  const handleResizeStart = useCallback(
     (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -21179,14 +21198,14 @@ function ImageNodeView({ node, updateAttributes: updateAttributes2, deleteNode: 
     },
     [updateAttributes2, preserveAspectRatio, minWidth]
   );
-  return /* @__PURE__ */ jsxRuntime.jsx(NodeViewWrapper, { "data-drag-handle": true, "data-align": node.attrs["data-align"] ?? void 0, children: /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Popover.Root, { open: isPopoverOpen, onOpenChange: setIsPopoverOpen, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(designSystem.Popover.Anchor, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+  return /* @__PURE__ */ jsx(NodeViewWrapper, { "data-drag-handle": true, "data-align": node.attrs["data-align"] ?? void 0, children: /* @__PURE__ */ jsxs(Popover.Root, { open: isPopoverOpen, onOpenChange: setIsPopoverOpen, children: [
+    /* @__PURE__ */ jsx(Popover.Anchor, { children: /* @__PURE__ */ jsxs(
       "div",
       {
         className: "image-wrapper",
         "data-selected": selected || isPopoverOpen || void 0,
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(
+          /* @__PURE__ */ jsx(
             "img",
             {
               ref: imgRef,
@@ -21204,39 +21223,39 @@ function ImageNodeView({ node, updateAttributes: updateAttributes2, deleteNode: 
               }
             }
           ),
-          resizeEnabled && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "image-resize-handle", onMouseDown: handleResizeStart })
+          resizeEnabled && /* @__PURE__ */ jsx("div", { className: "image-resize-handle", onMouseDown: handleResizeStart })
         ]
       }
     ) }),
-    /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Popover.Content, { side: "bottom", children: [
-      /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { display: "flex", gap: "4px", padding: "8px", paddingBottom: "0" }, children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsxs(Popover.Content, { side: "bottom", children: [
+      /* @__PURE__ */ jsxs("div", { style: { display: "flex", gap: "4px", padding: "8px", paddingBottom: "0" }, children: [
+        /* @__PURE__ */ jsx(
           ToolbarButton,
           {
             onClick: () => handleAlign("left"),
-            icon: /* @__PURE__ */ jsxRuntime.jsx(TextAlignLeft, {}),
+            icon: /* @__PURE__ */ jsx(TextAlignLeft, {}),
             active: currentAlign === "left",
             disabled: false,
             tooltip: formatMessage({ id: "tiptap-editor.image.alignLeft", defaultMessage: "Align left" }),
             marginLeft: 0
           }
         ),
-        /* @__PURE__ */ jsxRuntime.jsx(
+        /* @__PURE__ */ jsx(
           ToolbarButton,
           {
             onClick: () => handleAlign("center"),
-            icon: /* @__PURE__ */ jsxRuntime.jsx(TextAlignCenter, {}),
+            icon: /* @__PURE__ */ jsx(TextAlignCenter, {}),
             active: currentAlign === "center",
             disabled: false,
             tooltip: formatMessage({ id: "tiptap-editor.image.alignCenter", defaultMessage: "Align center" }),
             marginLeft: 0
           }
         ),
-        /* @__PURE__ */ jsxRuntime.jsx(
+        /* @__PURE__ */ jsx(
           ToolbarButton,
           {
             onClick: () => handleAlign("right"),
-            icon: /* @__PURE__ */ jsxRuntime.jsx(TextAlignRight, {}),
+            icon: /* @__PURE__ */ jsx(TextAlignRight, {}),
             active: currentAlign === "right",
             disabled: false,
             tooltip: formatMessage({ id: "tiptap-editor.image.alignRight", defaultMessage: "Align right" }),
@@ -21244,9 +21263,9 @@ function ImageNodeView({ node, updateAttributes: updateAttributes2, deleteNode: 
           }
         )
       ] }),
-      resizeEnabled && /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { display: "flex", alignItems: "center", gap: "4px", padding: "8px", paddingBottom: "0" }, children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
-          designSystem.TextInput,
+      resizeEnabled && /* @__PURE__ */ jsxs("div", { style: { display: "flex", alignItems: "center", gap: "4px", padding: "8px", paddingBottom: "0" }, children: [
+        /* @__PURE__ */ jsx(
+          TextInput,
           {
             type: "number",
             placeholder: "W",
@@ -21258,9 +21277,9 @@ function ImageNodeView({ node, updateAttributes: updateAttributes2, deleteNode: 
             style: { minWidth: "62px", flexGrow: 1 }
           }
         ),
-        /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: "1.1rem", color: "#999" }, children: "×" }),
-        /* @__PURE__ */ jsxRuntime.jsx(
-          designSystem.TextInput,
+        /* @__PURE__ */ jsx("span", { style: { fontSize: "1.1rem", color: "#999" }, children: "×" }),
+        /* @__PURE__ */ jsx(
+          TextInput,
           {
             type: "number",
             placeholder: "H",
@@ -21272,18 +21291,18 @@ function ImageNodeView({ node, updateAttributes: updateAttributes2, deleteNode: 
             style: { minWidth: "62px", flexGrow: 1 }
           }
         ),
-        (currentWidth || currentHeight) && /* @__PURE__ */ jsxRuntime.jsx(
-          designSystem.IconButton,
+        (currentWidth || currentHeight) && /* @__PURE__ */ jsx(
+          IconButton,
           {
             onClick: () => updateAttributes2({ width: null, height: null }),
             label: formatMessage({ id: "tiptap-editor.image.resetSize", defaultMessage: "Reset size" }),
-            children: /* @__PURE__ */ jsxRuntime.jsx(icons.Cross, {})
+            children: /* @__PURE__ */ jsx(Cross, {})
           }
         )
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { display: "flex", alignItems: "center", gap: "8px", padding: "8px" }, children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
-          designSystem.TextInput,
+      /* @__PURE__ */ jsxs("div", { style: { display: "flex", alignItems: "center", gap: "8px", padding: "8px" }, children: [
+        /* @__PURE__ */ jsx(
+          TextInput,
           {
             placeholder: formatMessage({ id: "tiptap-editor.image.altText", defaultMessage: "Alt text" }),
             value: altText,
@@ -21293,12 +21312,12 @@ function ImageNodeView({ node, updateAttributes: updateAttributes2, deleteNode: 
             "aria-label": formatMessage({ id: "tiptap-editor.image.altText", defaultMessage: "Alt text" })
           }
         ),
-        /* @__PURE__ */ jsxRuntime.jsx(
-          designSystem.IconButton,
+        /* @__PURE__ */ jsx(
+          IconButton,
           {
             onClick: deleteNode2,
             label: formatMessage({ id: "tiptap-editor.image.deleteImage", defaultMessage: "Delete image" }),
-            children: /* @__PURE__ */ jsxRuntime.jsx(icons.Trash, {})
+            children: /* @__PURE__ */ jsx(Trash, {})
           }
         )
       ] })
@@ -21310,7 +21329,7 @@ function ImageNodeViewReadOnly({ node }) {
   const rawHeight = node.attrs.height;
   const width = typeof rawWidth === "number" ? rawWidth : null;
   const height = typeof rawHeight === "number" ? rawHeight : null;
-  return /* @__PURE__ */ jsxRuntime.jsx(NodeViewWrapper, { "data-drag-handle": true, "data-align": node.attrs["data-align"] ?? void 0, children: /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(NodeViewWrapper, { "data-drag-handle": true, "data-align": node.attrs["data-align"] ?? void 0, children: /* @__PURE__ */ jsx(
     "img",
     {
       src: node.attrs.src,
@@ -21368,8 +21387,8 @@ const StrapiImage = index_default$6.extend({
   }
 });
 function useImage(editor, props = { disabled: false }) {
-  const [showPicker, setShowPicker] = React.useState(false);
-  const { formatMessage } = reactIntl.useIntl();
+  const [showPicker, setShowPicker] = useState(false);
+  const { formatMessage } = useIntl();
   const editorState = useEditorState({
     editor,
     selector: (ctx) => ({
@@ -21387,11 +21406,11 @@ function useImage(editor, props = { disabled: false }) {
     editor.chain().focus().setImage({ src, alt: altText, "data-asset-id": asset.id }).createParagraphNear().run();
     setShowPicker(false);
   }
-  const imageButton = /* @__PURE__ */ jsxRuntime.jsx(
+  const imageButton = /* @__PURE__ */ jsx(
     ToolbarButton,
     {
       onClick: () => setShowPicker(true),
-      icon: /* @__PURE__ */ jsxRuntime.jsx(icons.Image, {}),
+      icon: /* @__PURE__ */ jsx(Image$1, {}),
       active: false,
       disabled: props.disabled || !editor || (editorState?.isInCodeBlock ?? false),
       tooltip: formatMessage({
@@ -21400,7 +21419,7 @@ function useImage(editor, props = { disabled: false }) {
       })
     }
   );
-  const imageDialog = /* @__PURE__ */ jsxRuntime.jsx(
+  const imageDialog = /* @__PURE__ */ jsx(
     MediaLibraryWrapper,
     {
       open: showPicker,
@@ -21410,8 +21429,81 @@ function useImage(editor, props = { disabled: false }) {
   );
   return { imageButton, imageDialog };
 }
+function isPdfAsset(asset) {
+  return !!asset && asset.mime?.toLowerCase() === "application/pdf" && typeof asset.url === "string" && /^(https?:\/\/|\/)/i.test(asset.url.trim()) && !asset.url.trim().startsWith("//") && !!asset.name?.trim() && Number.isInteger(asset.id) && asset.id > 0;
+}
+function insertPdfAttachment(editor, range, asset) {
+  if (!isPdfAsset(asset)) return false;
+  const inserted = editor.commands.insertContentAt(range, {
+    type: "pdfAttachment",
+    attrs: { url: asset.url.trim(), name: asset.name.trim(), assetId: asset.id }
+  }, { updateSelection: true });
+  if (!inserted) return false;
+  const selection = editor.state.selection;
+  if (selection instanceof NodeSelection && selection.node.type.name === "pdfAttachment") {
+    const afterCard = selection.to;
+    const next = editor.state.doc.nodeAt(afterCard);
+    if (!next?.isTextblock) {
+      editor.commands.insertContentAt(afterCard, { type: "paragraph" });
+    }
+    editor.commands.setTextSelection(afterCard + 1);
+  }
+  editor.commands.focus();
+  return true;
+}
+function usePdfAttachment(editor, props = {}) {
+  const [showPicker, setShowPicker] = useState(false);
+  const [error, setError] = useState(false);
+  const savedSelection = useRef(null);
+  const { formatMessage } = useIntl();
+  const editorState = useEditorState({
+    editor,
+    selector: (ctx) => ({ isInCodeBlock: ctx.editor?.isActive("codeBlock") ?? false })
+  });
+  function openPicker() {
+    if (!editor) return;
+    savedSelection.current = {
+      from: editor.state.selection.from,
+      to: editor.state.selection.to
+    };
+    setError(false);
+    setShowPicker(true);
+  }
+  function handleSelectAssets(assets) {
+    const asset = assets[0];
+    const range = savedSelection.current;
+    const inserted = !!editor && !!range && !!asset && insertPdfAttachment(editor, range, asset);
+    setShowPicker(false);
+    savedSelection.current = null;
+    setError(!inserted);
+  }
+  return {
+    pdfButton: /* @__PURE__ */ jsx(
+      ToolbarButton,
+      {
+        onClick: openPicker,
+        icon: /* @__PURE__ */ jsx(FilePdf, {}),
+        disabled: props.disabled || !editor || (editorState?.isInCodeBlock ?? false),
+        tooltip: formatMessage({ id: "tiptap-editor.toolbar.insertPdf", defaultMessage: "Insert PDF" })
+      }
+    ),
+    pdfDialog: /* @__PURE__ */ jsx(
+      MediaLibraryWrapper,
+      {
+        open: showPicker,
+        onClose: () => {
+          setShowPicker(false);
+          savedSelection.current = null;
+        },
+        onSelectAssets: handleSelectAssets,
+        allowedTypes: ["files"]
+      }
+    ),
+    pdfError: error ? /* @__PURE__ */ jsx(Typography, { textColor: "danger600", variant: "pi", role: "alert", children: formatMessage({ id: "tiptap-editor.pdf.invalid", defaultMessage: "Select a PDF file to insert." }) }) : null
+  };
+}
 function useScript(editor, props = { disabled: false }) {
-  const { formatMessage } = reactIntl.useIntl();
+  const { formatMessage } = useIntl();
   const editorState = useEditorState({
     editor,
     selector: (ctx) => {
@@ -21443,13 +21535,13 @@ function useScript(editor, props = { disabled: false }) {
     editor?.chain().focus().toggleSubscript().run();
   };
   return {
-    superscriptButton: /* @__PURE__ */ jsxRuntime.jsx(
+    superscriptButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleSuperscript,
-        icon: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+        icon: /* @__PURE__ */ jsxs(Fragment$1, { children: [
           "x",
-          /* @__PURE__ */ jsxRuntime.jsx("sup", { children: "2" })
+          /* @__PURE__ */ jsx("sup", { children: "2" })
         ] }),
         active: editorState?.isSuperscript ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleSuperscript,
@@ -21459,13 +21551,13 @@ function useScript(editor, props = { disabled: false }) {
         })
       }
     ),
-    subscriptButton: /* @__PURE__ */ jsxRuntime.jsx(
+    subscriptButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: toggleSubscript,
-        icon: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+        icon: /* @__PURE__ */ jsxs(Fragment$1, { children: [
           "x",
-          /* @__PURE__ */ jsxRuntime.jsx("sub", { children: "2" })
+          /* @__PURE__ */ jsx("sub", { children: "2" })
         ] }),
         active: editorState?.isSubscript ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleSubscript,
@@ -21489,10 +21581,10 @@ const TableSizeDialog = ({
   onClose,
   onSave
 }) => {
-  const { formatMessage } = reactIntl.useIntl();
-  const [rows, setRows] = React.useState(defaultRows);
-  const [cols, setCols] = React.useState(defaultCols);
-  React.useEffect(() => {
+  const { formatMessage } = useIntl();
+  const [rows, setRows] = useState(defaultRows);
+  const [cols, setCols] = useState(defaultCols);
+  useEffect(() => {
     if (open) {
       setRows(defaultRows);
       setCols(defaultCols);
@@ -21505,25 +21597,25 @@ const TableSizeDialog = ({
     if (!isValid) return;
     onSave(clamp(rows, min, max), clamp(cols, min, max));
   };
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    designSystem.Dialog.Root,
+  return /* @__PURE__ */ jsx(
+    Dialog.Root,
     {
       open,
       onOpenChange: (v) => {
         if (!v) onClose();
       },
-      children: open && /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Content, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Header, { children: formatMessage({ id: "tiptap-editor.table.insertTable", defaultMessage: "Insert table" }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Body, { children: /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Flex, { gap: 4, alignItems: "flex-end", children: [
-          /* @__PURE__ */ jsxRuntime.jsxs(
-            designSystem.Field.Root,
+      children: open && /* @__PURE__ */ jsxs(Dialog.Content, { children: [
+        /* @__PURE__ */ jsx(Dialog.Header, { children: formatMessage({ id: "tiptap-editor.table.insertTable", defaultMessage: "Insert table" }) }),
+        /* @__PURE__ */ jsx(Dialog.Body, { children: /* @__PURE__ */ jsxs(Flex, { gap: 4, alignItems: "flex-end", children: [
+          /* @__PURE__ */ jsxs(
+            Field.Root,
             {
               width: "100%",
               hint: formatMessage({ id: "tiptap-editor.table.minMax", defaultMessage: "Min {min}, max {max}" }, { min, max }),
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Label, { children: formatMessage({ id: "tiptap-editor.table.rows", defaultMessage: "Rows" }) }),
-                /* @__PURE__ */ jsxRuntime.jsx(
-                  designSystem.TextInput,
+                /* @__PURE__ */ jsx(Field.Label, { children: formatMessage({ id: "tiptap-editor.table.rows", defaultMessage: "Rows" }) }),
+                /* @__PURE__ */ jsx(
+                  TextInput,
                   {
                     name: "table-rows",
                     type: "number",
@@ -21532,19 +21624,19 @@ const TableSizeDialog = ({
                     placeholder: String(defaultRows)
                   }
                 ),
-                /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Hint, {})
+                /* @__PURE__ */ jsx(Field.Hint, {})
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntime.jsxs(
-            designSystem.Field.Root,
+          /* @__PURE__ */ jsxs(
+            Field.Root,
             {
               width: "100%",
               hint: formatMessage({ id: "tiptap-editor.table.minMax", defaultMessage: "Min {min}, max {max}" }, { min, max }),
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Label, { children: formatMessage({ id: "tiptap-editor.table.columns", defaultMessage: "Columns" }) }),
-                /* @__PURE__ */ jsxRuntime.jsx(
-                  designSystem.TextInput,
+                /* @__PURE__ */ jsx(Field.Label, { children: formatMessage({ id: "tiptap-editor.table.columns", defaultMessage: "Columns" }) }),
+                /* @__PURE__ */ jsx(
+                  TextInput,
                   {
                     name: "table-cols",
                     type: "number",
@@ -21553,21 +21645,21 @@ const TableSizeDialog = ({
                     placeholder: String(defaultCols)
                   }
                 ),
-                /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Hint, {})
+                /* @__PURE__ */ jsx(Field.Hint, {})
               ]
             }
           )
         ] }) }),
-        /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Footer, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Cancel, { children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, { variant: "tertiary", fullWidth: true, onClick: onClose, children: formatMessage({ id: "tiptap-editor.table.cancel", defaultMessage: "Cancel" }) }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Action, { children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, { fullWidth: true, variant: "success-light", onClick: handleSave, disabled: !isValid, children: formatMessage({ id: "tiptap-editor.table.insert", defaultMessage: "Insert" }) }) })
+        /* @__PURE__ */ jsxs(Dialog.Footer, { children: [
+          /* @__PURE__ */ jsx(Dialog.Cancel, { children: /* @__PURE__ */ jsx(Button, { variant: "tertiary", fullWidth: true, onClick: onClose, children: formatMessage({ id: "tiptap-editor.table.cancel", defaultMessage: "Cancel" }) }) }),
+          /* @__PURE__ */ jsx(Dialog.Action, { children: /* @__PURE__ */ jsx(Button, { fullWidth: true, variant: "success-light", onClick: handleSave, disabled: !isValid, children: formatMessage({ id: "tiptap-editor.table.insert", defaultMessage: "Insert" }) }) })
         ] })
       ] })
     }
   );
 };
 function useTable(editor, props = { disabled: false }) {
-  const { formatMessage } = reactIntl.useIntl();
+  const { formatMessage } = useIntl();
   const editorState = useEditorState({
     editor,
     selector: (ctx) => {
@@ -21600,7 +21692,7 @@ function useTable(editor, props = { disabled: false }) {
       };
     }
   });
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpenDialog = () => {
     if (!editor) return;
     setOpen(true);
@@ -21617,21 +21709,21 @@ function useTable(editor, props = { disabled: false }) {
   const mergeCells2 = () => editor?.chain().focus().mergeCells().run();
   const splitCell2 = () => editor?.chain().focus().splitCell().run();
   return {
-    tableButton: /* @__PURE__ */ jsxRuntime.jsx(
+    tableButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: handleOpenDialog,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(icons.GridNine, {}),
+        icon: /* @__PURE__ */ jsx(GridNine, {}),
         active: editorState?.isTable ?? false,
         disabled: props.disabled || !editor || !editorState?.canInsertTable,
         tooltip: formatMessage({ id: "tiptap-editor.toolbar.table", defaultMessage: "Table" })
       }
     ),
-    addColumnButton: /* @__PURE__ */ jsxRuntime.jsx(
+    addColumnButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: addColumn2,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "+Col" }),
+        icon: /* @__PURE__ */ jsx(Fragment$1, { children: "+Col" }),
         active: false,
         hidden: props.disabled || !editor || !editorState?.canAddColumn,
         tooltip: formatMessage({
@@ -21640,11 +21732,11 @@ function useTable(editor, props = { disabled: false }) {
         })
       }
     ),
-    removeColumnButton: /* @__PURE__ */ jsxRuntime.jsx(
+    removeColumnButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: removeColumn2,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "-Col" }),
+        icon: /* @__PURE__ */ jsx(Fragment$1, { children: "-Col" }),
         active: false,
         hidden: props.disabled || !editor || !editorState?.canDeleteColumn,
         tooltip: formatMessage({
@@ -21653,11 +21745,11 @@ function useTable(editor, props = { disabled: false }) {
         })
       }
     ),
-    addRowButton: /* @__PURE__ */ jsxRuntime.jsx(
+    addRowButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: addRow2,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "+Row" }),
+        icon: /* @__PURE__ */ jsx(Fragment$1, { children: "+Row" }),
         active: false,
         hidden: props.disabled || !editor || !editorState?.canAddRow,
         tooltip: formatMessage({
@@ -21666,11 +21758,11 @@ function useTable(editor, props = { disabled: false }) {
         })
       }
     ),
-    removeRowButton: /* @__PURE__ */ jsxRuntime.jsx(
+    removeRowButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: removeRow2,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "-Row" }),
+        icon: /* @__PURE__ */ jsx(Fragment$1, { children: "-Row" }),
         active: false,
         hidden: props.disabled || !editor || !editorState?.canDeleteRow,
         tooltip: formatMessage({
@@ -21679,11 +21771,11 @@ function useTable(editor, props = { disabled: false }) {
         })
       }
     ),
-    mergeCellsButton: /* @__PURE__ */ jsxRuntime.jsx(
+    mergeCellsButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: mergeCells2,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "Merge cells" }),
+        icon: /* @__PURE__ */ jsx(Fragment$1, { children: "Merge cells" }),
         hidden: props.disabled || !editor || !editorState?.canMergeCells,
         tooltip: formatMessage({
           id: "tiptap-editor.toolbar.mergeCells",
@@ -21691,11 +21783,11 @@ function useTable(editor, props = { disabled: false }) {
         })
       }
     ),
-    splitCellButton: /* @__PURE__ */ jsxRuntime.jsx(
+    splitCellButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: splitCell2,
-        icon: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: "Split cell" }),
+        icon: /* @__PURE__ */ jsx(Fragment$1, { children: "Split cell" }),
         hidden: props.disabled || !editor || !editorState?.canSplitCell,
         tooltip: formatMessage({
           id: "tiptap-editor.toolbar.splitCell",
@@ -21703,7 +21795,7 @@ function useTable(editor, props = { disabled: false }) {
         })
       }
     ),
-    tableDialog: /* @__PURE__ */ jsxRuntime.jsx(
+    tableDialog: /* @__PURE__ */ jsx(
       TableSizeDialog,
       {
         open,
@@ -21716,7 +21808,7 @@ function useTable(editor, props = { disabled: false }) {
   };
 }
 function TextAlignJustify(props) {
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(
     "svg",
     {
       width: "16",
@@ -21725,7 +21817,7 @@ function TextAlignJustify(props) {
       fill: "currentColor",
       xmlns: "http://www.w3.org/2000/svg",
       ...props,
-      children: /* @__PURE__ */ jsxRuntime.jsx(
+      children: /* @__PURE__ */ jsx(
         "path",
         {
           d: "M3 10H21M3 14H21M3 18H21M3 6H21",
@@ -21739,7 +21831,7 @@ function TextAlignJustify(props) {
   );
 }
 function useTextAlign(editor, props = { disabled: false }) {
-  const { formatMessage } = reactIntl.useIntl();
+  const { formatMessage } = useIntl();
   const editorState = useEditorState({
     editor,
     selector: (ctx) => {
@@ -21759,41 +21851,41 @@ function useTextAlign(editor, props = { disabled: false }) {
     editor?.chain().focus().setTextAlign(alignment).run();
   };
   return {
-    textAlignLeftButton: /* @__PURE__ */ jsxRuntime.jsx(
+    textAlignLeftButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: () => setTextAlign("left"),
-        icon: /* @__PURE__ */ jsxRuntime.jsx(TextAlignLeft, {}),
+        icon: /* @__PURE__ */ jsx(TextAlignLeft, {}),
         active: editorState?.isTextAlignLeft ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleAlign,
         tooltip: formatMessage({ id: "tiptap-editor.toolbar.textAlignLeft", defaultMessage: "Text Align Left" })
       }
     ),
-    textAlignCenterButton: /* @__PURE__ */ jsxRuntime.jsx(
+    textAlignCenterButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: () => setTextAlign("center"),
-        icon: /* @__PURE__ */ jsxRuntime.jsx(TextAlignCenter, {}),
+        icon: /* @__PURE__ */ jsx(TextAlignCenter, {}),
         active: editorState?.isTextAlignCenter ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleAlign,
         tooltip: formatMessage({ id: "tiptap-editor.toolbar.textAlignCenter", defaultMessage: "Text Align Center" })
       }
     ),
-    textAlignRightButton: /* @__PURE__ */ jsxRuntime.jsx(
+    textAlignRightButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: () => setTextAlign("right"),
-        icon: /* @__PURE__ */ jsxRuntime.jsx(TextAlignRight, {}),
+        icon: /* @__PURE__ */ jsx(TextAlignRight, {}),
         active: editorState?.isTextAlignRight ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleAlign,
         tooltip: formatMessage({ id: "tiptap-editor.toolbar.textAlignRight", defaultMessage: "Text Align Right" })
       }
     ),
-    textAlignJustifyButton: /* @__PURE__ */ jsxRuntime.jsx(
+    textAlignJustifyButton: /* @__PURE__ */ jsx(
       ToolbarButton,
       {
         onClick: () => setTextAlign("justify"),
-        icon: /* @__PURE__ */ jsxRuntime.jsx(TextAlignJustify, {}),
+        icon: /* @__PURE__ */ jsx(TextAlignJustify, {}),
         active: editorState?.isTextAlignJustify ?? false,
         disabled: props.disabled || !editor || !editorState?.canToggleAlign,
         tooltip: formatMessage({ id: "tiptap-editor.toolbar.textAlignJustify", defaultMessage: "Text Align Justify" })
@@ -21807,10 +21899,10 @@ function ColorPickerPopover({
   onSelect,
   onRemove
 }) {
-  const { formatMessage } = reactIntl.useIntl();
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: 8, maxHeight: 400, overflowY: "auto" }, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(
-      designSystem.Button,
+  const { formatMessage } = useIntl();
+  return /* @__PURE__ */ jsxs("div", { style: { padding: 8, maxHeight: 400, overflowY: "auto" }, children: [
+    /* @__PURE__ */ jsx(
+      Button,
       {
         variant: "tertiary",
         size: "S",
@@ -21822,7 +21914,7 @@ function ColorPickerPopover({
         })
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       "div",
       {
         style: {
@@ -21830,7 +21922,7 @@ function ColorPickerPopover({
           gridTemplateColumns: "repeat(11, 24px)",
           gap: 4
         },
-        children: colors.map((entry) => /* @__PURE__ */ jsxRuntime.jsx(designSystem.Tooltip, { description: entry.label, children: /* @__PURE__ */ jsxRuntime.jsx(
+        children: colors.map((entry) => /* @__PURE__ */ jsx(Tooltip, { description: entry.label, children: /* @__PURE__ */ jsx(
           "button",
           {
             type: "button",
@@ -21853,12 +21945,12 @@ function ColorPickerPopover({
   ] });
 }
 function useThemeConfig() {
-  return index.getThemeCache();
+  return getThemeCache();
 }
 function TextColorIcon({ underColor }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs("svg", { width: "16", height: "16", viewBox: "0 0 16 16", "aria-hidden": "true", children: [
-    /* @__PURE__ */ jsxRuntime.jsx("text", { x: "8", y: "11", fontFamily: "serif", fontSize: "12", fontWeight: "bold", fill: "currentColor", textAnchor: "middle", children: "A" }),
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "2", y: "13", width: "12", height: "2", fill: underColor, rx: "1" })
+  return /* @__PURE__ */ jsxs("svg", { width: "16", height: "16", viewBox: "0 0 16 16", "aria-hidden": "true", children: [
+    /* @__PURE__ */ jsx("text", { x: "8", y: "11", fontFamily: "serif", fontSize: "12", fontWeight: "bold", fill: "currentColor", textAnchor: "middle", children: "A" }),
+    /* @__PURE__ */ jsx("rect", { x: "2", y: "13", width: "12", height: "2", fill: underColor, rx: "1" })
   ] });
 }
 function useTextColor(editor, props = {}) {
@@ -21873,8 +21965,8 @@ function useTextColor(editor, props = {}) {
       };
     }
   });
-  const selectionRef = React.useRef(null);
-  const [showPicker, setShowPicker] = React.useState(false);
+  const selectionRef = useRef(null);
+  const [showPicker, setShowPicker] = useState(false);
   const openPicker = () => {
     if (!editor) return;
     const { from: from2, to } = editor.state.selection;
@@ -21912,25 +22004,25 @@ function useTextColor(editor, props = {}) {
   const activeColor = editorState?.activeColor;
   const underColor = activeColor ?? "#999999";
   return {
-    textColorButton: /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Popover.Root, { open: showPicker, onOpenChange: handleOpenChange, children: [
-      /* @__PURE__ */ jsxRuntime.jsx(designSystem.Popover.Anchor, { children: /* @__PURE__ */ jsxRuntime.jsx(
+    textColorButton: /* @__PURE__ */ jsxs(Popover.Root, { open: showPicker, onOpenChange: handleOpenChange, children: [
+      /* @__PURE__ */ jsx(Popover.Anchor, { children: /* @__PURE__ */ jsx(
         ToolbarButton,
         {
           onClick: () => setShowPicker((v) => !v),
-          icon: /* @__PURE__ */ jsxRuntime.jsx(TextColorIcon, { underColor }),
+          icon: /* @__PURE__ */ jsx(TextColorIcon, { underColor }),
           active: showPicker,
           disabled: props.disabled || !editor,
           tooltip: "Text color"
         }
       ) }),
-      /* @__PURE__ */ jsxRuntime.jsx(
-        designSystem.Popover.Content,
+      /* @__PURE__ */ jsx(
+        Popover.Content,
         {
           side: "bottom",
           align: "start",
           sideOffset: 4,
           onInteractOutside: handleInteractOutside,
-          children: /* @__PURE__ */ jsxRuntime.jsx(
+          children: /* @__PURE__ */ jsx(
             ColorPickerPopover,
             {
               colors,
@@ -21945,10 +22037,10 @@ function useTextColor(editor, props = {}) {
   };
 }
 function HighlightColorIcon({ underColor }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs("svg", { width: "16", height: "16", viewBox: "0 0 16 16", "aria-hidden": "true", children: [
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "2", y: "1", width: "12", height: "12", rx: "2", fill: underColor }),
-    /* @__PURE__ */ jsxRuntime.jsx("text", { x: "8", y: "11", fontFamily: "serif", fontSize: "12", fontWeight: "bold", fill: "currentColor", textAnchor: "middle", children: "A" }),
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "2", y: "13", width: "12", height: "2", fill: underColor, rx: "1" })
+  return /* @__PURE__ */ jsxs("svg", { width: "16", height: "16", viewBox: "0 0 16 16", "aria-hidden": "true", children: [
+    /* @__PURE__ */ jsx("rect", { x: "2", y: "1", width: "12", height: "12", rx: "2", fill: underColor }),
+    /* @__PURE__ */ jsx("text", { x: "8", y: "11", fontFamily: "serif", fontSize: "12", fontWeight: "bold", fill: "currentColor", textAnchor: "middle", children: "A" }),
+    /* @__PURE__ */ jsx("rect", { x: "2", y: "13", width: "12", height: "2", fill: underColor, rx: "1" })
   ] });
 }
 function useHighlightColor(editor, props = {}) {
@@ -21963,8 +22055,8 @@ function useHighlightColor(editor, props = {}) {
       };
     }
   });
-  const selectionRef = React.useRef(null);
-  const [showPicker, setShowPicker] = React.useState(false);
+  const selectionRef = useRef(null);
+  const [showPicker, setShowPicker] = useState(false);
   const openPicker = () => {
     if (!editor) return;
     const { from: from2, to } = editor.state.selection;
@@ -22002,25 +22094,25 @@ function useHighlightColor(editor, props = {}) {
   const activeColor = editorState?.activeColor;
   const underColor = activeColor ?? "#999999";
   return {
-    highlightColorButton: /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Popover.Root, { open: showPicker, onOpenChange: handleOpenChange, children: [
-      /* @__PURE__ */ jsxRuntime.jsx(designSystem.Popover.Anchor, { children: /* @__PURE__ */ jsxRuntime.jsx(
+    highlightColorButton: /* @__PURE__ */ jsxs(Popover.Root, { open: showPicker, onOpenChange: handleOpenChange, children: [
+      /* @__PURE__ */ jsx(Popover.Anchor, { children: /* @__PURE__ */ jsx(
         ToolbarButton,
         {
           onClick: () => showPicker ? handleInteractOutside() : openPicker(),
-          icon: /* @__PURE__ */ jsxRuntime.jsx(HighlightColorIcon, { underColor }),
+          icon: /* @__PURE__ */ jsx(HighlightColorIcon, { underColor }),
           active: showPicker,
           disabled: props.disabled || !editor,
           tooltip: "Highlight color"
         }
       ) }),
-      /* @__PURE__ */ jsxRuntime.jsx(
-        designSystem.Popover.Content,
+      /* @__PURE__ */ jsx(
+        Popover.Content,
         {
           side: "bottom",
           align: "start",
           sideOffset: 4,
           onInteractOutside: handleInteractOutside,
-          children: /* @__PURE__ */ jsxRuntime.jsx(
+          children: /* @__PURE__ */ jsx(
             ColorPickerPopover,
             {
               colors,
@@ -22035,16 +22127,16 @@ function useHighlightColor(editor, props = {}) {
   };
 }
 function usePresetConfig(presetName) {
-  const { get: get2 } = admin.useFetchClient();
-  const normalizedPresetName = React.useMemo(
+  const { get: get2 } = useFetchClient();
+  const normalizedPresetName = useMemo(
     () => presetName?.trim() || void 0,
     [presetName]
   );
-  const [config, setConfig] = React.useState(
+  const [config, setConfig] = useState(
     normalizedPresetName ? null : MINIMAL_PRESET_CONFIG
   );
-  const [isLoading, setIsLoading] = React.useState(Boolean(normalizedPresetName));
-  React.useEffect(() => {
+  const [isLoading, setIsLoading] = useState(Boolean(normalizedPresetName));
+  useEffect(() => {
     let mounted = true;
     if (!normalizedPresetName) {
       setConfig(MINIMAL_PRESET_CONFIG);
@@ -23396,13 +23488,13 @@ function run$1(start, str) {
 function stringToArray(str) {
   const result = [];
   const len = str.length;
-  let index2 = 0;
-  while (index2 < len) {
-    let first2 = str.charCodeAt(index2);
+  let index = 0;
+  while (index < len) {
+    let first2 = str.charCodeAt(index);
     let second;
-    let char = first2 < 55296 || first2 > 56319 || index2 + 1 === len || (second = str.charCodeAt(index2 + 1)) < 56320 || second > 57343 ? str[index2] : str.slice(index2, index2 + 2);
+    let char = first2 < 55296 || first2 > 56319 || index + 1 === len || (second = str.charCodeAt(index + 1)) < 56320 || second > 57343 ? str[index] : str.slice(index, index + 2);
     result.push(char);
-    index2 += char.length;
+    index += char.length;
   }
   return result;
 }
@@ -25016,8 +25108,8 @@ var OrderedList = Node3.create({
     level: "block",
     start: (src) => {
       const match = src.match(/^(\s*)(\d+)\.\s+/);
-      const index2 = match == null ? void 0 : match.index;
-      return index2 !== void 0 ? index2 : -1;
+      const index = match == null ? void 0 : match.index;
+      return index !== void 0 ? index : -1;
     },
     tokenize: (src, _tokens, lexer) => {
       var _a;
@@ -25312,8 +25404,8 @@ var TaskList = Node3.create({
     level: "block",
     start(src) {
       var _a;
-      const index2 = (_a = src.match(/^\s*[-+*]\s+\[([ xX])\]\s+/)) == null ? void 0 : _a.index;
-      return index2 !== void 0 ? index2 : -1;
+      const index = (_a = src.match(/^\s*[-+*]\s+\[([ xX])\]\s+/)) == null ? void 0 : _a.index;
+      return index !== void 0 ? index : -1;
     },
     tokenize(src, tokens, lexer) {
       const parseTaskListContent = (content) => {
@@ -25871,13 +25963,13 @@ function needsGap(type) {
 }
 function closedBefore($pos) {
   for (let d = $pos.depth; d >= 0; d--) {
-    let index2 = $pos.index(d), parent = $pos.node(d);
-    if (index2 == 0) {
+    let index = $pos.index(d), parent = $pos.node(d);
+    if (index == 0) {
       if (parent.type.spec.isolating)
         return true;
       continue;
     }
-    for (let before = parent.child(index2 - 1); ; before = before.lastChild) {
+    for (let before = parent.child(index - 1); ; before = before.lastChild) {
       if (before.childCount == 0 && !before.inlineContent || needsGap(before.type))
         return true;
       if (before.inlineContent)
@@ -25888,13 +25980,13 @@ function closedBefore($pos) {
 }
 function closedAfter($pos) {
   for (let d = $pos.depth; d >= 0; d--) {
-    let index2 = $pos.indexAfter(d), parent = $pos.node(d);
-    if (index2 == parent.childCount) {
+    let index = $pos.indexAfter(d), parent = $pos.node(d);
+    if (index == parent.childCount) {
       if (parent.type.spec.isolating)
         return true;
       continue;
     }
-    for (let after = parent.child(index2); ; after = after.firstChild) {
+    for (let after = parent.child(index); ; after = after.firstChild) {
       if (after.childCount == 0 && !after.inlineContent || needsGap(after.type))
         return true;
       if (after.inlineContent)
@@ -27099,11 +27191,11 @@ var TableMap = class {
     const result = [];
     const seen = {};
     for (let row = rect.top; row < rect.bottom; row++) for (let col = rect.left; col < rect.right; col++) {
-      const index2 = row * this.width + col;
-      const pos = this.map[index2];
+      const index = row * this.width + col;
+      const pos = this.map[index];
       if (seen[pos]) continue;
       seen[pos] = true;
-      if (col == rect.left && col && this.map[index2 - 1] == pos || row == rect.top && row && this.map[index2 - this.width] == pos) continue;
+      if (col == rect.left && col && this.map[index - 1] == pos || row == rect.top && row && this.map[index - this.width] == pos) continue;
       result.push(pos);
     }
     return result;
@@ -27112,10 +27204,10 @@ var TableMap = class {
     for (let i = 0, rowStart = 0; ; i++) {
       const rowEnd = rowStart + table.child(i).nodeSize;
       if (i == row) {
-        let index2 = col + row * this.width;
+        let index = col + row * this.width;
         const rowEndIndex = (row + 1) * this.width;
-        while (index2 < rowEndIndex && this.map[index2] < rowStart) index2++;
-        return index2 == rowEndIndex ? rowEnd - 1 : this.map[index2];
+        while (index < rowEndIndex && this.map[index] < rowStart) index++;
+        return index == rowEndIndex ? rowEnd - 1 : this.map[index];
       }
       rowStart = rowEnd;
     }
@@ -27368,8 +27460,8 @@ var CellSelection = class CellSelection2 extends Selection {
     const rows = [];
     for (let row = rect.top; row < rect.bottom; row++) {
       const rowContent = [];
-      for (let index2 = row * map2.width + rect.left, col = rect.left; col < rect.right; col++, index2++) {
-        const pos = map2.map[index2];
+      for (let index = row * map2.width + rect.left, col = rect.left; col < rect.right; col++, index++) {
+        const pos = map2.map[index];
         if (seen[pos]) continue;
         seen[pos] = true;
         const cellRect = map2.findCell(pos);
@@ -27664,14 +27756,14 @@ function addColumn(tr2, { map: map2, tableStart, table }, col) {
   let refColumn = col > 0 ? -1 : 0;
   if (columnIsHeader(map2, table, col + refColumn)) refColumn = col == 0 || col == map2.width ? null : 0;
   for (let row = 0; row < map2.height; row++) {
-    const index2 = row * map2.width + col;
-    if (col > 0 && col < map2.width && map2.map[index2 - 1] == map2.map[index2]) {
-      const pos = map2.map[index2];
+    const index = row * map2.width + col;
+    if (col > 0 && col < map2.width && map2.map[index - 1] == map2.map[index]) {
+      const pos = map2.map[index];
       const cell = table.nodeAt(pos);
       tr2.setNodeMarkup(tr2.mapping.map(tableStart + pos), null, addColSpan(cell.attrs, col - map2.colCount(pos)));
       row += cell.attrs.rowspan - 1;
     } else {
-      const type = refColumn == null ? tableNodeTypes(table.type.schema).cell : table.nodeAt(map2.map[index2 + refColumn]).type;
+      const type = refColumn == null ? tableNodeTypes(table.type.schema).cell : table.nodeAt(map2.map[index + refColumn]).type;
       const pos = map2.positionAt(row, col, table);
       tr2.insert(tr2.mapping.map(tableStart + pos), type.createAndFill());
     }
@@ -27697,11 +27789,11 @@ function addColumnAfter(state, dispatch) {
 function removeColumn(tr2, { map: map2, table, tableStart }, col) {
   const mapStart = tr2.mapping.maps.length;
   for (let row = 0; row < map2.height; ) {
-    const index2 = row * map2.width + col;
-    const pos = map2.map[index2];
+    const index = row * map2.width + col;
+    const pos = map2.map[index];
     const cell = table.nodeAt(pos);
     const attrs = cell.attrs;
-    if (col > 0 && map2.map[index2 - 1] == pos || col < map2.width - 1 && map2.map[index2 + 1] == pos) tr2.setNodeMarkup(tr2.mapping.slice(mapStart).map(tableStart + pos), null, removeColSpan(attrs, col - map2.colCount(pos)));
+    if (col > 0 && map2.map[index - 1] == pos || col < map2.width - 1 && map2.map[index + 1] == pos) tr2.setNodeMarkup(tr2.mapping.slice(mapStart).map(tableStart + pos), null, removeColSpan(attrs, col - map2.colCount(pos)));
     else {
       const start = tr2.mapping.slice(mapStart).map(tableStart + pos);
       tr2.delete(start, start + cell.nodeSize);
@@ -27739,8 +27831,8 @@ function addRow(tr2, { map: map2, tableStart, table }, row) {
   const cells = [];
   let refRow = row > 0 ? -1 : 0;
   if (rowIsHeader(map2, table, row + refRow)) refRow = row == 0 || row == map2.height ? null : 0;
-  for (let col = 0, index2 = map2.width * row; col < map2.width; col++, index2++) if (row > 0 && row < map2.height && map2.map[index2] == map2.map[index2 - map2.width]) {
-    const pos = map2.map[index2];
+  for (let col = 0, index = map2.width * row; col < map2.width; col++, index++) if (row > 0 && row < map2.height && map2.map[index] == map2.map[index - map2.width]) {
+    const pos = map2.map[index];
     const attrs = table.nodeAt(pos).attrs;
     tr2.setNodeMarkup(tableStart + pos, null, {
       ...attrs,
@@ -27749,7 +27841,7 @@ function addRow(tr2, { map: map2, tableStart, table }, row) {
     col += attrs.colspan - 1;
   } else {
     var _table$nodeAt2;
-    const type = refRow == null ? tableNodeTypes(table.type.schema).cell : (_table$nodeAt2 = table.nodeAt(map2.map[index2 + refRow * map2.width])) === null || _table$nodeAt2 === void 0 ? void 0 : _table$nodeAt2.type;
+    const type = refRow == null ? tableNodeTypes(table.type.schema).cell : (_table$nodeAt2 = table.nodeAt(map2.map[index + refRow * map2.width])) === null || _table$nodeAt2 === void 0 ? void 0 : _table$nodeAt2.type;
     const node = type === null || type === void 0 ? void 0 : type.createAndFill();
     if (node) cells.push(node);
   }
@@ -27779,18 +27871,18 @@ function removeRow(tr2, { map: map2, table, tableStart }, row) {
   const mapFrom = tr2.mapping.maps.length;
   tr2.delete(rowPos + tableStart, nextRow + tableStart);
   const seen = /* @__PURE__ */ new Set();
-  for (let col = 0, index2 = row * map2.width; col < map2.width; col++, index2++) {
-    const pos = map2.map[index2];
+  for (let col = 0, index = row * map2.width; col < map2.width; col++, index++) {
+    const pos = map2.map[index];
     if (seen.has(pos)) continue;
     seen.add(pos);
-    if (row > 0 && pos == map2.map[index2 - map2.width]) {
+    if (row > 0 && pos == map2.map[index - map2.width]) {
       const attrs = table.nodeAt(pos).attrs;
       tr2.setNodeMarkup(tr2.mapping.slice(mapFrom).map(pos + tableStart), null, {
         ...attrs,
         rowspan: attrs.rowspan - 1
       });
       col += attrs.colspan - 1;
-    } else if (row < map2.height && pos == map2.map[index2 + map2.width]) {
+    } else if (row < map2.height && pos == map2.map[index + map2.width]) {
       const cell = table.nodeAt(pos);
       const attrs = cell.attrs;
       const copy2 = cell.type.create({
@@ -28217,8 +28309,8 @@ function isolateHorizontal(tr2, map2, table, start, left, right, top, mapFrom) {
   if (top == 0 || top == map2.height) return false;
   let found2 = false;
   for (let col = left; col < right; col++) {
-    const index2 = top * map2.width + col, pos = map2.map[index2];
-    if (map2.map[index2 - map2.width] == pos) {
+    const index = top * map2.width + col, pos = map2.map[index];
+    if (map2.map[index - map2.width] == pos) {
       found2 = true;
       const cell = table.nodeAt(pos);
       const { top: cellTop, left: cellLeft } = map2.findCell(pos);
@@ -28239,8 +28331,8 @@ function isolateVertical(tr2, map2, table, start, top, bottom, left, mapFrom) {
   if (left == 0 || left == map2.width) return false;
   let found2 = false;
   for (let row = top; row < bottom; row++) {
-    const index2 = row * map2.width + left, pos = map2.map[index2];
-    if (map2.map[index2 - 1] == pos) {
+    const index = row * map2.width + left, pos = map2.map[index];
+    if (map2.map[index - 1] == pos) {
       found2 = true;
       const cell = table.nodeAt(pos);
       const cellLeft = map2.colCount(pos);
@@ -28650,8 +28742,8 @@ function edgeCell(view, event, side, handleWidth) {
   if (!$cell) return -1;
   if (side == "right") return $cell.pos;
   const map2 = TableMap.get($cell.node(-1)), start = $cell.start(-1);
-  const index2 = map2.map.indexOf($cell.pos - start);
-  return index2 % map2.width == 0 ? -1 : start + map2.map[index2 - 1];
+  const index = map2.map.indexOf($cell.pos - start);
+  return index % map2.width == 0 ? -1 : start + map2.map[index - 1];
 }
 function draggedWidth(dragging, event, resizeMinWidth) {
   const offset = event.clientX - dragging.startX;
@@ -28670,10 +28762,10 @@ function updateColumnWidth(view, cell, width) {
     if (row && map2.map[mapIndex] == map2.map[mapIndex - map2.width]) continue;
     const pos = map2.map[mapIndex];
     const attrs = table.nodeAt(pos).attrs;
-    const index2 = attrs.colspan == 1 ? 0 : col - map2.colCount(pos);
-    if (attrs.colwidth && attrs.colwidth[index2] == width) continue;
+    const index = attrs.colspan == 1 ? 0 : col - map2.colCount(pos);
+    if (attrs.colwidth && attrs.colwidth[index] == width) continue;
     const colwidth = attrs.colwidth ? attrs.colwidth.slice() : zeroes(attrs.colspan);
-    colwidth[index2] = width;
+    colwidth[index] = width;
     tr2.setNodeMarkup(start + pos, null, {
       ...attrs,
       colwidth
@@ -28702,10 +28794,10 @@ function handleDecorations(state, cell) {
   const start = $cell.start(-1);
   const col = map2.colCount($cell.pos - start) + $cell.nodeAfter.attrs.colspan - 1;
   for (let row = 0; row < map2.height; row++) {
-    const index2 = col + row * map2.width;
-    if ((col == map2.width - 1 || map2.map[index2] != map2.map[index2 + 1]) && (row == 0 || map2.map[index2] != map2.map[index2 - map2.width])) {
+    const index = col + row * map2.width;
+    if ((col == map2.width - 1 || map2.map[index] != map2.map[index + 1]) && (row == 0 || map2.map[index] != map2.map[index - map2.width])) {
       var _columnResizingPlugin;
-      const cellPos = map2.map[index2];
+      const cellPos = map2.map[index];
       const pos = start + cellPos + table.nodeAt(cellPos).nodeSize - 1;
       const dom = document.createElement("div");
       dom.className = "column-resize-handle";
@@ -28971,7 +29063,7 @@ function createTable(schema, rowsCount, colsCount, withHeaderRow, cellContent) {
   const types = getTableNodeTypes(schema);
   const headerCells = [];
   const cells = [];
-  for (let index2 = 0; index2 < colsCount; index2 += 1) {
+  for (let index = 0; index < colsCount; index += 1) {
     const cell = createCell(types.cell);
     if (cell) {
       cells.push(cell);
@@ -28984,8 +29076,8 @@ function createTable(schema, rowsCount, colsCount, withHeaderRow, cellContent) {
     }
   }
   const rows = [];
-  for (let index2 = 0; index2 < rowsCount; index2 += 1) {
-    rows.push(types.row.createChecked(null, withHeaderRow && index2 === 0 ? headerCells : cells));
+  for (let index = 0; index < rowsCount; index += 1) {
+    rows.push(types.row.createChecked(null, withHeaderRow && index === 0 ? headerCells : cells));
   }
   return types.table.createChecked(null, rows);
 }
@@ -29790,6 +29882,53 @@ const PasteStripper = Extension.create({
     return html.replace(/ style="[^"]*"/g, "");
   }
 });
+const PdfAttachmentNode = Node3.create({
+  name: "pdfAttachment",
+  group: "block",
+  atom: true,
+  selectable: true,
+  draggable: true,
+  addAttributes() {
+    return {
+      url: {
+        default: "",
+        parseHTML: (element) => element.getAttribute("href") ?? ""
+      },
+      name: {
+        default: "",
+        parseHTML: (element) => element.getAttribute("data-name") ?? element.textContent ?? ""
+      },
+      assetId: {
+        default: null,
+        parseHTML: (element) => {
+          const raw = element.getAttribute("data-asset-id");
+          if (!raw) return null;
+          const id = Number(raw);
+          return Number.isInteger(id) && id > 0 ? id : null;
+        }
+      }
+    };
+  },
+  parseHTML() {
+    return [{ tag: 'a[data-type="pdf-attachment"]' }];
+  },
+  renderHTML({ node }) {
+    const { url, name, assetId } = node.attrs;
+    const safeUrl = /^(https?:\/\/|\/)/i.test(url) && !url.startsWith("//") ? url : "#";
+    return [
+      "a",
+      {
+        "data-type": "pdf-attachment",
+        "data-name": name,
+        ...assetId ? { "data-asset-id": String(assetId) } : {},
+        href: safeUrl,
+        target: "_blank",
+        rel: "noopener noreferrer"
+      },
+      name || "PDF document"
+    ];
+  }
+});
 const starterKitFeatureValue = (value) => {
   if (!isFeatureEnabled(value)) {
     return false;
@@ -29875,12 +30014,13 @@ function buildExtensions(config) {
   } else {
     extensions.push(StrapiImage.configure({ enableContentCheck: true }));
   }
+  extensions.push(PdfAttachmentNode);
   extensions.push(Gapcursor);
   return extensions;
 }
-const InnerEditor = React.forwardRef(
+const InnerEditor = forwardRef(
   ({ config, presetName, ...props }, forwardedRef) => {
-    const extensions = React.useMemo(() => {
+    const extensions = useMemo(() => {
       return buildExtensions(config);
     }, [presetName]);
     const { editor, field } = useTiptapEditor(props.name, "", extensions);
@@ -29889,13 +30029,14 @@ const InnerEditor = React.forwardRef(
     const heading = useHeading(editor, { disabled: props.disabled, levels: headingOptions?.levels });
     const link = useLink(editor, { disabled: props.disabled });
     const image = useImage(editor, { disabled: props.disabled });
+    const pdf = usePdfAttachment(editor, { disabled: props.disabled });
     const script = useScript(editor, { disabled: props.disabled });
     const table = useTable(editor, { disabled: props.disabled });
     const textAlign = useTextAlign(editor, { disabled: props.disabled });
     const textColor = useTextColor(editor, { disabled: props.disabled });
     const highlightColor = useHighlightColor(editor, { disabled: props.disabled });
     if (!editor) return null;
-    return /* @__PURE__ */ jsxRuntime.jsx(EditorErrorBoundary, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+    return /* @__PURE__ */ jsx(EditorErrorBoundary, { children: /* @__PURE__ */ jsxs(
       BaseTiptapInput,
       {
         editor,
@@ -29904,47 +30045,52 @@ const InnerEditor = React.forwardRef(
         ref: forwardedRef,
         noPresetConfigured: !presetName,
         children: [
-          /* @__PURE__ */ jsxRuntime.jsxs(FeatureGuard, { featureValue: config?.heading, children: [
+          /* @__PURE__ */ jsxs(FeatureGuard, { featureValue: config?.heading, children: [
             heading.headingSelect,
             heading.headingTagSelect,
-            /* @__PURE__ */ jsxRuntime.jsx(Spacer, { width: 8 })
+            /* @__PURE__ */ jsx(Spacer, { width: 8 })
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.bold, children: starterKit.boldButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.italic, children: starterKit.italicButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.underline, children: starterKit.underlineButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.strike, children: starterKit.strikeButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.superscript, children: script.superscriptButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.subscript, children: script.subscriptButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.textColor, children: textColor.textColorButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.highlightColor, children: highlightColor.highlightColorButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(Spacer, { width: 8 }),
-          /* @__PURE__ */ jsxRuntime.jsxs(FeatureGuard, { featureValue: config?.textAlign, children: [
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.bold, children: starterKit.boldButton }),
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.italic, children: starterKit.italicButton }),
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.underline, children: starterKit.underlineButton }),
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.strike, children: starterKit.strikeButton }),
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.superscript, children: script.superscriptButton }),
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.subscript, children: script.subscriptButton }),
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.textColor, children: textColor.textColorButton }),
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.highlightColor, children: highlightColor.highlightColorButton }),
+          /* @__PURE__ */ jsx(Spacer, { width: 8 }),
+          /* @__PURE__ */ jsxs(FeatureGuard, { featureValue: config?.textAlign, children: [
             textAlign.textAlignLeftButton,
             textAlign.textAlignCenterButton,
             textAlign.textAlignRightButton,
             textAlign.textAlignJustifyButton,
-            /* @__PURE__ */ jsxRuntime.jsx(Spacer, { width: 8 })
+            /* @__PURE__ */ jsx(Spacer, { width: 8 })
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.bulletList, children: starterKit.bulletButton }),
-          /* @__PURE__ */ jsxRuntime.jsxs(FeatureGuard, { featureValue: config?.orderedList, children: [
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.bulletList, children: starterKit.bulletButton }),
+          /* @__PURE__ */ jsxs(FeatureGuard, { featureValue: config?.orderedList, children: [
             starterKit.orderedButton,
             starterKit.alphabeticButton,
             starterKit.indentListButton,
             starterKit.outdentListButton
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(Spacer, { width: 8 }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.code, children: starterKit.codeButton }),
-          /* @__PURE__ */ jsxRuntime.jsx(FeatureGuard, { featureValue: config?.blockquote, children: starterKit.blockquoteButton }),
-          /* @__PURE__ */ jsxRuntime.jsxs(FeatureGuard, { featureValue: config?.link, children: [
+          /* @__PURE__ */ jsx(Spacer, { width: 8 }),
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.code, children: starterKit.codeButton }),
+          /* @__PURE__ */ jsx(FeatureGuard, { featureValue: config?.blockquote, children: starterKit.blockquoteButton }),
+          /* @__PURE__ */ jsxs(FeatureGuard, { featureValue: config?.link, children: [
             link.linkButton,
             link.linkDialog
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsxs(FeatureGuard, { featureValue: config?.mediaLibrary, children: [
+          /* @__PURE__ */ jsxs(FeatureGuard, { featureValue: config?.mediaLibrary, children: [
             image.imageButton,
             image.imageDialog
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsxs(FeatureGuard, { featureValue: config?.table, children: [
-            /* @__PURE__ */ jsxRuntime.jsx(Spacer, { width: 8 }),
+          /* @__PURE__ */ jsxs(FeatureGuard, { featureValue: config?.pdfAttachment, children: [
+            pdf.pdfButton,
+            pdf.pdfDialog,
+            pdf.pdfError
+          ] }),
+          /* @__PURE__ */ jsxs(FeatureGuard, { featureValue: config?.table, children: [
+            /* @__PURE__ */ jsx(Spacer, { width: 8 }),
             table.tableButton,
             table.addColumnButton,
             table.removeColumnButton,
@@ -29959,15 +30105,15 @@ const InnerEditor = React.forwardRef(
     ) });
   }
 );
-const RichTextInput = React.forwardRef((props, forwardedRef) => {
-  const { formatMessage } = reactIntl.useIntl();
+const RichTextInput = forwardRef((props, forwardedRef) => {
+  const { formatMessage } = useIntl();
   const rawPresetName = props.attribute?.options?.preset;
   const normalizedPresetName = rawPresetName?.trim() || void 0;
   const { config, isLoading } = usePresetConfig(normalizedPresetName);
   if (isLoading) {
-    return /* @__PURE__ */ jsxRuntime.jsx(designSystem.Box, { padding: 4, children: formatMessage({ id: "tiptap-editor.loading", defaultMessage: "Loading editor..." }) });
+    return /* @__PURE__ */ jsx(Box, { padding: 4, children: formatMessage({ id: "tiptap-editor.loading", defaultMessage: "Loading editor..." }) });
   }
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(
     InnerEditor,
     {
       ref: forwardedRef,
@@ -29977,4 +30123,6 @@ const RichTextInput = React.forwardRef((props, forwardedRef) => {
     }
   );
 });
-exports.default = RichTextInput;
+export {
+  RichTextInput as default
+};

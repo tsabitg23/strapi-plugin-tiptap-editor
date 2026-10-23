@@ -1,9 +1,10 @@
-import { useRef, useEffect, useState } from "react";
-import { useFetchClient } from "@strapi/strapi/admin";
-import { jsx } from "react/jsx-runtime";
-import { SingleSelect, SingleSelectOption } from "@strapi/design-system";
-import { useIntl } from "react-intl";
-import { Paragraph } from "@strapi/icons";
+"use strict";
+const React = require("react");
+const admin = require("@strapi/strapi/admin");
+const jsxRuntime = require("react/jsx-runtime");
+const designSystem = require("@strapi/design-system");
+const reactIntl = require("react-intl");
+const icons = require("@strapi/icons");
 const __variableDynamicImportRuntimeHelper = (glob, path, segs) => {
   const v = glob[path];
   if (v) {
@@ -72,9 +73,9 @@ function reconcileThemeStyles(theme) {
   });
 }
 const Initializer = ({ setPlugin }) => {
-  const ref = useRef(setPlugin);
-  const { get } = useFetchClient();
-  useEffect(() => {
+  const ref = React.useRef(setPlugin);
+  const { get } = admin.useFetchClient();
+  React.useEffect(() => {
     const fetchTheme = async () => {
       let themeStyles = {};
       try {
@@ -103,15 +104,15 @@ const Initializer = ({ setPlugin }) => {
   return null;
 };
 function PresetSelect({ value, onChange, name }) {
-  const { formatMessage } = useIntl();
-  const { get } = useFetchClient();
-  const [presets, setPresets] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
+  const { formatMessage } = reactIntl.useIntl();
+  const { get } = admin.useFetchClient();
+  const [presets, setPresets] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  React.useEffect(() => {
     get("/tiptap-editor/presets").then((res) => setPresets(res.data?.presets ?? [])).catch(() => setPresets([])).finally(() => setIsLoading(false));
   }, [get]);
-  return /* @__PURE__ */ jsx(
-    SingleSelect,
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    designSystem.SingleSelect,
     {
       name,
       value: value || "",
@@ -120,7 +121,7 @@ function PresetSelect({ value, onChange, name }) {
       },
       placeholder: presets.length === 0 ? formatMessage({ id: "tiptap-editor.preset.noPresetsAvailable", defaultMessage: "No presets available" }) : formatMessage({ id: "tiptap-editor.preset.selectPreset", defaultMessage: "Select a preset" }),
       disabled: isLoading || presets.length === 0,
-      children: presets.map((presetName) => /* @__PURE__ */ jsx(SingleSelectOption, { value: presetName, children: presetName }, presetName))
+      children: presets.map((presetName) => /* @__PURE__ */ jsxRuntime.jsx(designSystem.SingleSelectOption, { value: presetName, children: presetName }, presetName))
     }
   );
 }
@@ -144,9 +145,9 @@ const richTextField = {
     id: "tiptap-editor.richText.description",
     defaultMessage: "Use this field to create formatted text via Tiptap editor."
   },
-  icon: Paragraph,
+  icon: icons.Paragraph,
   components: {
-    Input: async () => import("./RichTextInput-DpQVo7BA.mjs").then((m) => ({ default: m.default }))
+    Input: async () => Promise.resolve().then(() => require("./RichTextInput-Cqz5KLve.js")).then((m) => ({ default: m.default }))
   },
   options: {
     advanced: [
@@ -200,7 +201,7 @@ const index = {
     return Promise.all(
       locales.map(async (locale) => {
         try {
-          const { default: data } = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./translations/en.json": () => import("./en-HTqMhvt6.mjs") }), `./translations/${locale}.json`, 3);
+          const { default: data } = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./translations/en.json": () => Promise.resolve().then(() => require("./en-CrKy_-a6.js")) }), `./translations/${locale}.json`, 3);
           return { data, locale };
         } catch {
           return { data: {}, locale };
@@ -209,8 +210,6 @@ const index = {
     );
   }
 };
-export {
-  getThemeCache as a,
-  getMediaLibraryComponent as g,
-  index as i
-};
+exports.getMediaLibraryComponent = getMediaLibraryComponent;
+exports.getThemeCache = getThemeCache;
+exports.index = index;
