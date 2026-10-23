@@ -73,6 +73,19 @@ export const TiptapInputStyles = styled.div`
     list-style-type: lower-alpha;
   }
 
+  /* The built-in list-item counter respects each list's start value. */
+  .ProseMirror ol > li::marker {
+    content: counters(list-item, '.', decimal) '. ';
+  }
+
+  .ProseMirror ol[type='a'] > li::marker {
+    content: counters(list-item, '.', lower-alpha) '. ';
+  }
+
+  .ProseMirror ol ol {
+    padding-left: 3rem;
+  }
+
   .ProseMirror li {
     margin: 0.25em 0;
   }

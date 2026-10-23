@@ -9,7 +9,7 @@ import ReactDOM, { flushSync } from "react-dom";
 import styled from "styled-components";
 import { useField, useFetchClient } from "@strapi/strapi/admin";
 import { Quotes, Code as Code$1, NumberList, BulletList as BulletList$1, StrikeThrough, Underline as Underline$1, Italic as Italic$1, Bold as Bold$1, Link as Link$1, Cross, Trash, Image as Image$1, GridNine } from "@strapi/icons";
-import { g as getMediaLibraryComponent, a as getThemeCache } from "./index-B39moJrq.mjs";
+import { g as getMediaLibraryComponent, a as getThemeCache } from "./index-CiK3RcaZ.mjs";
 var shim = { exports: {} };
 var useSyncExternalStoreShim_production = {};
 /**
@@ -19859,6 +19859,19 @@ const TiptapInputStyles = styled.div`
     list-style-type: lower-alpha;
   }
 
+  /* The built-in list-item counter respects each list's start value. */
+  .ProseMirror ol > li::marker {
+    content: counters(list-item, '.', decimal) '. ';
+  }
+
+  .ProseMirror ol[type='a'] > li::marker {
+    content: counters(list-item, '.', lower-alpha) '. ';
+  }
+
+  .ProseMirror ol ol {
+    padding-left: 3rem;
+  }
+
   .ProseMirror li {
     margin: 0.25em 0;
   }
@@ -20233,6 +20246,26 @@ function ToolbarButton({
     }
   ) });
 }
+function indentOrderedListItem(editor) {
+  if (!editor.isActive("orderedList")) return false;
+  const type = editor.getAttributes("orderedList").type ?? "1";
+  return editor.chain().focus().sinkListItem("listItem").updateAttributes("orderedList", { type }).run();
+}
+const OrderedSublistShortcuts = Extension.create({
+  name: "orderedSublistShortcuts",
+  priority: 1e3,
+  addKeyboardShortcuts() {
+    return {
+      Tab: () => {
+        return indentOrderedListItem(this.editor);
+      },
+      "Shift-Tab": () => {
+        if (!this.editor.isActive("orderedList")) return false;
+        return this.editor.commands.liftListItem("listItem");
+      }
+    };
+  }
+});
 function useStarterKit(editor, props = { disabled: false }) {
   const { formatMessage } = useIntl();
   const editorState = useEditorState({
@@ -20313,7 +20346,7 @@ function useStarterKit(editor, props = { disabled: false }) {
       editor.chain().focus().toggleOrderedList().updateAttributes("orderedList", { type: "a" }).run();
     }
   };
-  const indentListItem = () => editor?.chain().focus().sinkListItem("listItem").updateAttributes("orderedList", { type: "1" }).run();
+  const indentListItem = () => editor && indentOrderedListItem(editor);
   const outdentListItem = () => editor?.chain().focus().liftListItem("listItem").run();
   const toggleBlockquote = () => editor?.chain().focus().toggleBlockquote().run();
   return {
@@ -20410,7 +20443,7 @@ function useStarterKit(editor, props = { disabled: false }) {
         disabled: props.disabled || !editor || !editorState?.canIndentListItem,
         tooltip: formatMessage({
           id: "tiptap-editor.toolbar.indentListItem",
-          defaultMessage: "Create numbered sublist (Tab)"
+          defaultMessage: "Create sublist (Tab)"
         })
       }
     ),
@@ -29749,22 +29782,6 @@ const PasteStripper = Extension.create({
   name: "pasteStripper",
   transformPastedHTML(html) {
     return html.replace(/ style="[^"]*"/g, "");
-  }
-});
-const OrderedSublistShortcuts = Extension.create({
-  name: "orderedSublistShortcuts",
-  priority: 1e3,
-  addKeyboardShortcuts() {
-    return {
-      Tab: () => {
-        if (!this.editor.isActive("orderedList")) return false;
-        return this.editor.chain().sinkListItem("listItem").updateAttributes("orderedList", { type: "1" }).run();
-      },
-      "Shift-Tab": () => {
-        if (!this.editor.isActive("orderedList")) return false;
-        return this.editor.commands.liftListItem("listItem");
-      }
-    };
   }
 });
 const starterKitFeatureValue = (value) => {

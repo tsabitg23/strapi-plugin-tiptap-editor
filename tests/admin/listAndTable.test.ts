@@ -24,19 +24,25 @@ function textPosition(doc: any, text: string) {
 }
 
 describe('ordered list persistence and nesting', () => {
-  it('uses Tab to create a decimal sublist and Shift+Tab to outdent', () => {
+  it.each([
+    { parentType: null, sublistType: '1' },
+    { parentType: '1', sublistType: '1' },
+    { parentType: 'a', sublistType: 'a' },
+  ])('uses Tab to keep the parent list type $parentType', ({ parentType, sublistType }) => {
     const run = () => true;
     const chain = {
+      focus: () => chain,
       sinkListItem: () => chain,
       updateAttributes: (name: string, attrs: Record<string, unknown>) => {
         expect(name).toBe('orderedList');
-        expect(attrs).toEqual({ type: '1' });
+        expect(attrs).toEqual({ type: sublistType });
         return chain;
       },
       run,
     };
     const editor = {
       isActive: (name: string) => name === 'orderedList',
+      getAttributes: () => ({ type: parentType }),
       chain: () => chain,
       commands: { liftListItem: (name: string) => name === 'listItem' },
     };
@@ -45,12 +51,12 @@ describe('ordered list persistence and nesting', () => {
     expect(shortcuts['Shift-Tab']()).toBe(true);
   });
 
-  it('retains the alphabetic type and decimal child list through JSON save/reload', () => {
+  it.each(['1', 'a'])('retains nested list type %s through JSON save/reload', (type) => {
     const doc = schema.nodeFromJSON({
       type: 'doc',
       content: [{
         type: 'orderedList',
-        attrs: { type: 'a' },
+        attrs: { type },
         content: [
           { type: 'listItem', content: [paragraph('First')] },
           { type: 'listItem', content: [paragraph('Second')] },
@@ -71,11 +77,11 @@ describe('ordered list persistence and nesting', () => {
       if (node.type.name === 'orderedList' && pos > 0) nestedListPos = pos;
     });
     expect(nestedListPos).toBeGreaterThan(0);
-    state = state.apply(state.tr.setNodeMarkup(nestedListPos, undefined, { type: '1' }));
+    state = state.apply(state.tr.setNodeMarkup(nestedListPos, undefined, { type }));
 
     const reloaded = schema.nodeFromJSON(JSON.parse(JSON.stringify(state.doc.toJSON())));
-    expect(reloaded.firstChild?.attrs.type).toBe('a');
-    expect(reloaded.firstChild?.firstChild?.lastChild?.attrs.type).toBe('1');
+    expect(reloaded.firstChild?.attrs.type).toBe(type);
+    expect(reloaded.firstChild?.firstChild?.lastChild?.attrs.type).toBe(type);
 
     state = EditorState.create({
       schema,
@@ -84,7 +90,7 @@ describe('ordered list persistence and nesting', () => {
     });
     const lift = liftListItem(schema.nodes.listItem);
     expect(lift(state, (transaction) => { state = state.apply(transaction); })).toBe(true);
-    expect(state.doc.firstChild?.attrs.type).toBe('a');
+    expect(state.doc.firstChild?.attrs.type).toBe(type);
     expect(state.doc.firstChild?.childCount).toBe(2);
   });
 });

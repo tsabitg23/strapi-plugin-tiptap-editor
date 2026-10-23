@@ -147,7 +147,7 @@ const richTextField = {
   },
   icon: icons.Paragraph,
   components: {
-    Input: async () => Promise.resolve().then(() => require("./RichTextInput-CIVh6VfF.js")).then((m) => ({ default: m.default }))
+    Input: async () => Promise.resolve().then(() => require("./RichTextInput-bXR1cFV0.js")).then((m) => ({ default: m.default }))
   },
   options: {
     advanced: [

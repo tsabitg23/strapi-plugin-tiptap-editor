@@ -197,6 +197,39 @@
               "content": [
                 { "type": "text", "text": "First ordered item — temporibus autem quibusdam" }
               ]
+            },
+            {
+              "type": "orderedList",
+              "attrs": { "start": 1, "type": "1" },
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [{ "type": "text", "text": "Numbered subitem 1.1" }]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [{ "type": "text", "text": "Numbered subitem 1.2" }]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [{ "type": "text", "text": "Numbered subitem 1.3" }]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -221,6 +254,72 @@
               "content": [
                 { "type": "text", "text": "Third ordered item — rerum necessitabus saepe eveniet" }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "orderedList",
+      "attrs": { "start": 1, "type": "a" },
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [{ "type": "text", "text": "First alphabetic item" }]
+            },
+            {
+              "type": "orderedList",
+              "attrs": { "start": 1, "type": "a" },
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [{ "type": "text", "text": "Alphabetic subitem a.a" }]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [{ "type": "text", "text": "Alphabetic subitem a.b" }]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [{ "type": "text", "text": "Alphabetic subitem a.c" }]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [{ "type": "text", "text": "Second alphabetic item" }]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [{ "type": "text", "text": "Third alphabetic item" }]
             }
           ]
         }

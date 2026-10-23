@@ -12,6 +12,7 @@ import {
   Underline as UnderlineIcon,
 } from '@strapi/icons';
 import { ToolbarButton } from '../components/ToolbarButton';
+import { indentOrderedListItem } from './OrderedList';
 import { useIntl } from 'react-intl';
 
 export function useStarterKit(
@@ -98,8 +99,7 @@ export function useStarterKit(
       editor.chain().focus().toggleOrderedList().updateAttributes('orderedList', { type: 'a' }).run();
     }
   };
-  const indentListItem = () =>
-    editor?.chain().focus().sinkListItem('listItem').updateAttributes('orderedList', { type: '1' }).run();
+  const indentListItem = () => editor && indentOrderedListItem(editor);
   const outdentListItem = () => editor?.chain().focus().liftListItem('listItem').run();
   const toggleBlockquote = () => editor?.chain().focus().toggleBlockquote().run();
 
@@ -189,7 +189,7 @@ export function useStarterKit(
         disabled={props.disabled || !editor || !editorState?.canIndentListItem}
         tooltip={formatMessage({
           id: 'tiptap-editor.toolbar.indentListItem',
-          defaultMessage: 'Create numbered sublist (Tab)',
+          defaultMessage: 'Create sublist (Tab)',
         })}
       />
     ),
